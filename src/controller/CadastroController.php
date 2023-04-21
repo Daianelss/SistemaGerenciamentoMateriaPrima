@@ -4,48 +4,57 @@ include "../config/Conexao.php";
 class CadastroController
 {
     private $conexao;
+    private $funcionario;
+    private $idFuncionario;
 
-
-    function receberDados($funcionario)
+    function __construct()
     {
+        
+    }
+
+    function receberDados($funcionario, $id = null)
+    {
+        $this->funcionario = Utils::tratarInjection($funcionario);
+        $this->idFuncionario = $id;
+        if ($id != '') {
+            echo "Editar Funcionarios <br>";
+            $this->editarFuncionario();
+            header("Location: ../view/cadastroview.php");
+            exit();
+        }
 
         echo "Cadastro Controller <br>";
-        $this->cadastrarfuncionario($funcionario);
+        $this->cadastrarfuncionario();
         header("Location: ../view/cadastroview.php");
         exit();
     }
 
-    public function cadastrarfuncionario($funcionario)
+    public function cadastrarfuncionario()
     {
         echo "Cadastro Funcionario <br>";
-        echo "$funcionario";
+        echo $this->funcionario;
+
         // Cria um novo objeto Funcionario com os dados recebidos
-
-        $funcionario = addslashes($funcionario);
-        echo $funcionario;
-        $this->gravarBanco($funcionario);
-
+        echo $this->funcionario;
+        $this->gravarBanco();
     }
 
-    public function gravarBanco($funcionario)
+    public function gravarBanco()
     {
-        echo"gravar banco";
+        echo "gravar banco";
         try {
-            $conexao = Conexao::conectar();
+            $this->conexao = Conexao::conectar();
 
 
-// Verifica a conexão
-            if (!$conexao) {
+            // Verifica a conexão
+            if (!$this->conexao) {
                 die("Falha na conexão: " . mysqli_connect_error());
             }
-           
-// Aqui você pode executar suas operações no banco de dados
 
-            $funcionario = Utils::tratarInjection($funcionario);
+            // Aqui você pode executar suas operações no banco de dados
+            $sql = "INSERT INTO funcionario (FUNC_NOME)  VALUES ('$this->funcionario')";
 
-            $sql = "INSERT INTO funcionario (FUNC_NOME)  VALUES ('$funcionario')";
-
-            $stmt = mysqli_prepare($conexao, $sql);
+            $stmt = mysqli_prepare($this->conexao, $sql);
 
 
 
@@ -58,112 +67,83 @@ class CadastroController
             if ($result) {
                 echo "Funcionário cadastrado com sucesso no banco de dados!";
             } else {
-                echo "Erro ao cadastrar o funcionário no banco de dados: " . mysqli_error($conexao);
+                echo "Erro ao cadastrar o funcionário no banco de dados: " . mysqli_error($this->conexao);
             }
         } catch (PDOException $e) {
             echo "Erro ao cadastrar o funcionário no banco de dados: " . $e->getMessage();
         } finally {
-            mysqli_close($conexao);
+            mysqli_close($this->conexao);
         }
-
-
     }
-    
-    
-    public static function listarFuncionarios() {
-       
-        
-        
+
+
+    public function listarFuncionarios()
+    {
+
         try {
-            $conexao = Conexao::conectar();
-            
-            
+            $this->conexao = Conexao::conectar();
+
             // Verifica a conexão
-            if (!$conexao) {
+            if (!$this->conexao) {
                 die("Falha na conexão: " . mysqli_connect_error());
             }
-        
-            
+
             // Aqui você pode executar suas operações no banco de dados
-            
-                        
             $sql = "SELECT FUNC_ID, FUNC_NOME FROM funcionario";
-            
-            $result = mysqli_query($conexao, $sql);
-            
-           
-            
+
+            $result = mysqli_query($this->conexao, $sql);
+
             if (mysqli_num_rows($result) > 0) {
-               return $result;
+                return $result;
             } else {
                 return "Não foram encontrados registros na tabela.";
             }
         } catch (PDOException $e) {
             echo "Erro ao listar os funcionários no banco de dados: " . $e->getMessage();
         } finally {
-            mysqli_close($conexao);
-        }
-        ;
+            mysqli_close($this->conexao);
+        };
     }
-    
 
-    public function deletarfuncionario($funcionario)
+
+    public function editarFuncionario()
     {
-        echo "Deletar Funcionario <br>";
-        echo "$funcionario";
-        // Cria um novo objeto Funcionario com os dados recebidos
-        
-        $funcionario = addslashes($funcionario);
-        echo $funcionario;
-        $this->gravarBanco($funcionario);
-        
+        echo "Editar Funcionario <br>";
+        $this->editarBanco();
     }
-    
-    public function DeletarBanco($funcionario)
+
+    public function editarBanco()
     {
-        echo"gravar banco";
+        echo "Editar banco";
         try {
-            $conexao = Conexao::conectar();
-            
-            
+            $this->conexao = Conexao::conectar();
+
             // Verifica a conexão
-            if (!$conexao) {
+            if (!$this->conexao) {
                 die("Falha na conexão: " . mysqli_connect_error());
             }
             echo "Conexão bem-sucedida"; // Mensagem exibida se a conexão for bem-sucedida
-            
-            // Aqui você pode executar suas operações no banco de dados
-            
-            $funcionario = Utils::tratarInjection($funcionario);
-            
-            $sql = "INSERT INTO funcionario (FUNC_NOME)  VALUES ('$funcionario')";
-            
-            $stmt = mysqli_prepare($conexao, $sql);
-            
-            
-            
+
+            // $sql = "INSERT INTO funcionario (FUNC_NOME)  VALUES ('$this->funcionario')";
+
+            $sql = "UPDATE funcionario SET FUNC_NOME = ('$this->funcionario') WHERE FUNC_ID = ($this->idFuncionario);";
+
+            $stmt = mysqli_prepare($this->conexao, $sql);
+
             // Executa a query
             $result = mysqli_stmt_execute($stmt);
-            
+
             // Fecha a conexão
-            
-            
+
             if ($result) {
                 echo "Funcionário cadastrado com sucesso no banco de dados!";
             } else {
-                echo "Erro ao cadastrar o funcionário no banco de dados: " . mysqli_error($conexao);
+                echo "Erro ao cadastrar o funcionário no banco de dados: " . mysqli_error($this->conexao);
             }
         } catch (PDOException $e) {
             echo "Erro ao cadastrar o funcionário no banco de dados: " . $e->getMessage();
         } finally {
-            mysqli_close($conexao);
+            mysqli_close($this->conexao);
         }
-        
-        
     }
-
-
-
 }
-
-?>

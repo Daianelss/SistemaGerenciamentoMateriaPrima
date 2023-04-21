@@ -15,6 +15,5 @@ class Conexao
         return mysqli_connect($servername, $username, $password, $dbname);
 
 
-        asdasd
     }
 }
