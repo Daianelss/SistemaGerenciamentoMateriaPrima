@@ -6,4 +6,5 @@ $view = new cadastroview();
 
 // Chama o método para renderizar o formulário de cadastro
 $view->renderizarFormulario();
+$view->renderizarTabela();
 ?>
