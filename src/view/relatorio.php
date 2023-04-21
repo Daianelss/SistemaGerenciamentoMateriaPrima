@@ -26,7 +26,7 @@ $relatorios = [
 
 <body>
   <h1 align="center">Sistema de Gerenciamento de Materiais</h>
-    <form>
+    <form action="www.google.com">
       <select name="funcionarios">
         <?php
         $funcionarios = array("Funcionarios", "João", "Lucas", "Bruno", "Carla");
@@ -86,14 +86,27 @@ $relatorios = [
 
     </table>
 
+    <div >      
+    <button> <a href="../pages/home/index.php" >Voltar</a> </button>
+    </div>
+    
 
-    <button>voltar</button>
-    <button>imprimir</button>
+    <div id="d" align = "right" >  
+          <script language="javascript">
+          function imprime (text) {
+              text=document
+              print(text)
+          } 
+          </script>
 
+      <form>
+        <input type="button" value="Imprimir" name="Imprimir" onclick="imprime()"/>  
+        </form>
+        </div>    
     <?php include '../view/bootstrap_foot.php'; ?>
 
 </body>
 
 
-</html> */
+</html> 
 
