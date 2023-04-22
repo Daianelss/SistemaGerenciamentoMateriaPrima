@@ -10,6 +10,7 @@ class FuncionarioModel extends BaseModel{
         parent::__construct();
         $this->nomeTabela = "funcionario";
         $this->campoId = "FUNC_ID";
+        $this->campoStatus = "FUNC_STATUS";
     }
 
     public function editarFuncionario($id){
@@ -24,6 +25,7 @@ class FuncionarioModel extends BaseModel{
         $valores = array($this->nomeFuncionario, "1");
         $this->inserir($campos, $valores);
     }
+
 
 }
 

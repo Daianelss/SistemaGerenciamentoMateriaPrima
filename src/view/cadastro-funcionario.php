@@ -19,17 +19,16 @@ $view = new CadastroFuncionarioView();
 <body>
 
     <h1>Cadastro de Funcionário</h1>
-    <form method="post">
+    <form method="post" name="editarSalvar">
         <label for="funcionario">Funcionário:</label>
         <input type="text" id="funcionario" name="funcionario" required><br>
         <input type="submit" value="Salvar">
     </form>
 
     <?php
-    $view->validarFormulario();
+    $view->dispararAcao();
     $view->renderizarTabela();
     ?>
-
 
     <script>
         const botoesEditar = document.querySelectorAll('.btn-editar');
@@ -38,7 +37,7 @@ $view = new CadastroFuncionarioView();
                 const id = botao.dataset.id;
                 const linha = botao.parentNode.parentNode;
                 const nome = linha.querySelector('td:nth-child(2)').textContent;
-                const form = document.querySelector('form');
+                const form = document.querySelector('form[name="editarSalvar"]');
                 form.funcionario.value = nome;
 
                 //Verifica se o campo hidden já existe

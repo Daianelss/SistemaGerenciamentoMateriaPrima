@@ -6,6 +6,7 @@ class BaseModel
     private $conexao;
     public $nomeTabela;
     public $campoId;
+    public $campoStatus;
 
     function __construct()
     {
@@ -41,15 +42,15 @@ class BaseModel
         return $this->executarDml($sql);
     }
 
-    public function desativar($status, $id)
+    public function desativar($id)
     {
-        $sql = "UPDATE $this->nomeTabela SET $status = ('0') WHERE $this->campoId = $id;";
+        $sql = "UPDATE $this->nomeTabela SET $this->campoStatus = ('0') WHERE $this->campoId = $id;";
         return $this->executarDml($sql);
     }
 
-    public function ativar($status, $id)
+    public function ativar($id)
     {
-        $sql = "UPDATE $this->nomeTabela SET $status = ('1') WHERE $this->campoId = $id;";
+        $sql = "UPDATE $this->nomeTabela SET $this->campoStatus = ('1') WHERE $this->campoId = $id;";
         return $this->executarDml($sql);
     }
 

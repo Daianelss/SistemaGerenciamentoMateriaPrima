@@ -9,7 +9,7 @@ class FuncionarioController
         $this->funcionario = new FuncionarioModel();
     }
 
-    function receberDados($nomeFuncionario, $id = null)
+    function dispararAcao($nomeFuncionario, $id = null)
     {
         $this->funcionario->nomeFuncionario = Utils::tratarInjection($nomeFuncionario);
         $this->funcionario->idFuncionario = $id;
@@ -35,6 +35,15 @@ class FuncionarioController
             return $result;
         } else {
             return "Não foram encontrados registros na tabela.";
+        }
+    }
+
+    public function alterarStatus($status, $id)
+    {
+        if ($status == 1) {
+            $this->funcionario->desativar($id);
+        } else {
+            $this->funcionario->ativar($id);
         }
     }
 }

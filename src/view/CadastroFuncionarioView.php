@@ -10,14 +10,14 @@ class CadastroFuncionarioView
         $this->funcionarioController = new FuncionarioController();
     }
 
-    public function validarFormulario()
+    public function dispararAcao()
     {
         if (isset($_POST["id"])) {
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "Editar";
                 // Chama o método para receber os dados do formulário
-                $this->funcionarioController->receberDados($_POST["funcionario"], $_POST["id"]);
+                $this->funcionarioController->dispararAcao($_POST["funcionario"], $_POST["id"]);
             }
         }
 
@@ -25,7 +25,7 @@ class CadastroFuncionarioView
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Salvar";
             // Chama o método para receber os dados do formulário
-            $this->funcionarioController->receberDados($_POST["funcionario"]);
+            $this->funcionarioController->dispararAcao($_POST["funcionario"]);
         }
     }
 
@@ -39,11 +39,15 @@ class CadastroFuncionarioView
         // Loop através dos dados da tabela
         while ($row = mysqli_fetch_assoc($result)) {
             // Adicionar uma linha para cada registro
-            echo "<tr onclick='selecionarId(" . $row["FUNC_ID"] . ")'>";
+            echo "<tr>";
             echo "<td>" . $row["FUNC_ID"] . "</td>";
             echo "<td>" . $row["FUNC_NOME"] . "</td>";
             echo '<td> <button id="editar" class="btn-editar btn btn-primary" data-id="' . $row["FUNC_ID"] . '">Editar</button>';
-            echo '<td> <button class="btn btn-primary" data-id="' . $row["FUNC_ID"] . '">Ativar/Desativar</button>';
+
+            if ($row["FUNC_STATUS"] == "1")
+                echo '<td> <button class="btn btn-status btn-success" data-id="' . $row["FUNC_ID"] . '">Ativado</button>';
+            else
+                echo '<td> <button class="btn btn-status btn-danger" data-id="' . $row["FUNC_ID"] . '">Inativo</button>';
             echo "</tr>";
         }
         // Fechar a tabela HTML
