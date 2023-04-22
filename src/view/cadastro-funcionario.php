@@ -1,8 +1,8 @@
 <?php
-require 'cadastroview.php'; // Inclui o arquivo da classe bancaview
+require 'CadastroFuncionarioView.php'; // Inclui o arquivo da classe bancaview
 
 // Instancia a classe bancaview
-$view = new cadastroview();
+$view = new CadastroFuncionarioView();
 
 // Chama o método para renderizar o formulário de cadastro
 ?>
@@ -32,7 +32,7 @@ $view = new cadastroview();
 
 
     <script>
-        const botoesEditar = document.querySelectorAll('.btn-primary');
+        const botoesEditar = document.querySelectorAll('.btn-editar');
         botoesEditar.forEach(botao => {
             botao.addEventListener('click', () => {
                 const id = botao.dataset.id;

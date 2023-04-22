@@ -1,7 +1,7 @@
 <?php
 include "Utils.php";
 include "../config/Conexao.php";
-class CadastroController
+class FuncionarioController
 {
     private $conexao;
     private $funcionario;
@@ -19,13 +19,13 @@ class CadastroController
         if ($id != '') {
             echo "Editar Funcionarios <br>";
             $this->editarFuncionario();
-            header("Location: ../view/cadastroview.php");
+            header("Location: ../view/cadastro-funcionario.php");
             exit();
         }
 
         echo "Cadastro Controller <br>";
         $this->cadastrarfuncionario();
-        header("Location: ../view/cadastroview.php");
+        header("Location: ../view/cadastro-funcionario.php");
         exit();
     }
 
@@ -52,7 +52,7 @@ class CadastroController
             }
 
             // Aqui você pode executar suas operações no banco de dados
-            $sql = "INSERT INTO funcionario (FUNC_NOME)  VALUES ('$this->funcionario')";
+            $sql = "INSERT INTO funcionario (FUNC_NOME, FUNC_STATUS)  VALUES ('$this->funcionario','1')";
 
             $stmt = mysqli_prepare($this->conexao, $sql);
 

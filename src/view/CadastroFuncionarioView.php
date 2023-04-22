@@ -1,13 +1,13 @@
 <?php
-include "../controller/CadastroController.php";
+include "../controller/FuncionarioController.php";
 
-class cadastroview
+class CadastroFuncionarioView
 {
-    private CadastroController $cadastroController;
+    private FuncionarioController $funcionarioController;
 
     function __construct()
     {
-        $this->cadastroController = new CadastroController();
+        $this->funcionarioController = new FuncionarioController();
     }
 
     public function validarFormulario()
@@ -17,21 +17,21 @@ class cadastroview
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "Editar";
                 // Chama o método para receber os dados do formulário
-                $this->cadastroController->receberDados($_POST["funcionario"], $_POST["id"]);
+                $this->funcionarioController->receberDados($_POST["funcionario"], $_POST["id"]);
             }
         }
 
-        // Verifica se o formulário foi enviado
+        // Verifica se o formulário foi enviados
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Salvar";
             // Chama o método para receber os dados do formulário
-            $this->cadastroController->receberDados($_POST["funcionario"]);
+            $this->funcionarioController->receberDados($_POST["funcionario"]);
         }
     }
 
     public function renderizarTabela()
     {
-        $result = $this->cadastroController->listarFuncionarios();
+        $result = $this->funcionarioController->listarFuncionarios();
 
         // Iniciar a tabela HTML
         echo "<table class='table'>";
@@ -42,7 +42,8 @@ class cadastroview
             echo "<tr onclick='selecionarId(" . $row["FUNC_ID"] . ")'>";
             echo "<td>" . $row["FUNC_ID"] . "</td>";
             echo "<td>" . $row["FUNC_NOME"] . "</td>";
-            echo '<td> <button class="btn btn-primary" data-id="' . $row["FUNC_ID"] . '">Editar</button>';
+            echo '<td> <button id="editar" class="btn-editar btn btn-primary" data-id="' . $row["FUNC_ID"] . '">Editar</button>';
+            echo '<td> <button class="btn btn-primary" data-id="' . $row["FUNC_ID"] . '">Ativar/Desativar</button>';
             echo "</tr>";
         }
         // Fechar a tabela HTML
