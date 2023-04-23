@@ -1,6 +1,15 @@
 <?php
-
 session_start();
+
+require "RelatorioView.php";
+
+$view = new RelatorioView();
+
+$funcionarios = $view->getRelatorioController()->listarFuncionarios();
+$movimentos = $view->getRelatorioController()->listarTipoMovimento();
+$relatorios = $view->consultarDadosRelatorio();
+
+/*
 $relatorios = [
   ['28/01/2015', '21.52', 'Pulseira', '22.01', '-0.49'],
   ['28/04/2017', '21.52', 'Colar', '22.01', '-0.49'],
@@ -10,7 +19,7 @@ $relatorios = [
   ['28/01/2022', '21.52', 'pulseira e brinco', '22.01', '-0.49'],
   ['28/01/2023', '21.52', '2 pulseiras', '22.01', '-0.49'],
   ['28/09/2023', '21.52', 'Pulseira azul', '22.01', '-0.49'],
-];
+];*/
 
 ?>
 <!DOCTYPE html>
@@ -28,19 +37,27 @@ $relatorios = [
   <h1 align="center">Sistema de Gerenciamento de Materiais</h>
     <form>
       <select name="funcionarios">
+      <option value=''>Todos</option>
         <?php
-        $funcionarios = array("Funcionarios", "João", "Lucas", "Bruno", "Carla");
-        foreach ($funcionarios as $funcionario) {
-          echo "<option value='$funcionario'>$funcionario</option>";
-        }
+        if(count($funcionarios) > 0){
+          foreach ($funcionarios as $funcionario) {
+            $id   = $funcionario['FUNC_ID'];
+            $name = $funcionario['FUNC_NOME']; 
+            echo "<option value='$id'>$name</option>";
+          }
+        }        
         ?>
       </select>
 
       <select name="movimentos">
+      <option value=''>Todos</option>
         <?php
-        $movimentos = array("Movimento", "peróxido", "politriz", "magneto", "ródio");
-        foreach ($movimentos as $movimento) {
-          echo "<option value='$movimento'>$movimento</option>";
+        if(count($movimentos) > 0){
+          foreach ($movimentos as $movimento) {
+            $id   = $movimento['TIMO_ID'];
+            $name = $movimento['TIMO_NOME']; 
+            echo "<option value='$id'>$name</option>";
+          }
         }
         ?>
 
@@ -65,19 +82,19 @@ $relatorios = [
 
           <tr>
             <td>
-              <?= $relatorio[0] ?>
+              <?= $relatorio["MOVI_DATE"] ?>
             </td>
             <td>
-              <?= $relatorio[1] ?>
+              <?= $relatorio["MOVI_PESO"] ?>
             </td>
             <td>
-              <?= $relatorio[2] ?>
+              <?= $relatorio["MOVI_DESC"] ?>
             </td>
             <td>
-              <?= $relatorio[3] ?>
+              <?= $relatorio["MOVI_PESOSAIDA"] ?>
             </td>
             <td>
-              <?= $relatorio[4] ?>
+              <?= $relatorio["MOVI_PESO"] - $relatorio["MOVI_PESOSAIDA"] ?>
             </td>
           </tr>
 
