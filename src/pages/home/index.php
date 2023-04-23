@@ -12,7 +12,6 @@ include '../../view/bootstrap_head.php';
     <h1>Bem-vindo ao Sistema de Movimentos</h1>
     <h2>Escolha uma opção abaixo:</h2>
     <!-- Botões para as opções -->
-    <a href="../../view/relatorio.php" class="btn btn-info">Relatório</a>
     <a href="../../view/banca.php" class="btn btn-info">Bancas</a>
     <a href="../../view/cadastro-funcionario.php" class="btn btn-info">Funcionários</a>
     <a href="materia_prima.html" class="btn btn-info">Matéria Prima</a>
