@@ -1,16 +1,13 @@
 <?php
-
 session_start();
-$relatorios = [
-  ['28/01/2015', '21.52', 'Pulseira', '22.01', '-0.49'],
-  ['28/04/2017', '21.52', 'Colar', '22.01', '-0.49'],
-  ['28/12/2019', '21.52', 'brinco', '22.01', '-0.49'],
-  ['28/01/2020', '21.52', 'colar colorido', '22.01', '-0.49'],
-  ['28/01/2021', '21.52', 'colar redondo', '22.01', '-0.49'],
-  ['28/01/2022', '21.52', 'pulseira e brinco', '22.01', '-0.49'],
-  ['28/01/2023', '21.52', '2 pulseiras', '22.01', '-0.49'],
-  ['28/09/2023', '21.52', 'Pulseira azul', '22.01', '-0.49'],
-];
+
+require "RelatorioView.php";
+
+$view = new RelatorioView();
+
+$funcionarios = $view->getRelatorioController()->listarFuncionarios();
+$movimentos = $view->getRelatorioController()->listarTipoMovimento();
+$relatorios = $view->consultarDadosRelatorio();
 
 ?>
 <!DOCTYPE html>
@@ -25,31 +22,53 @@ $relatorios = [
 </head>
 
 <body>
-  <h1 align="center">Sistema de Gerenciamento de Materiais</h>
+  <div>
+  <h1 class ="container, row, col text-center">Sistema de Gerenciamento de Materiais</h>
     <form>
-      <select name="funcionarios">
+      <select class="form-row, border-primary border-3" name="funcionarios">
+      <option value=''>Todos</option>
         <?php
-        $funcionarios = array("Funcionarios", "João", "Lucas", "Bruno", "Carla");
-        foreach ($funcionarios as $funcionario) {
-          echo "<option value='$funcionario'>$funcionario</option>";
-        }
+        if(count($funcionarios) > 0){
+          foreach ($funcionarios as $funcionario) {
+            $id   = $funcionario['FUNC_ID'];
+            $name = $funcionario['FUNC_NOME']; 
+            echo "<option value='$id'>$name</option>";
+          }
+        }        
         ?>
       </select>
 
-      <select name="movimentos">
+      <select class="form-row, border-primary border-3" name="movimentos">
+      <option value=''>Todos</option>
         <?php
-        $movimentos = array("Movimento", "peróxido", "politriz", "magneto", "ródio");
-        foreach ($movimentos as $movimento) {
-          echo "<option value='$movimento'>$movimento</option>";
+        if(count($movimentos) > 0){
+          foreach ($movimentos as $movimento) {
+            $id   = $movimento['TIMO_ID'];
+            $name = $movimento['TIMO_NOME']; 
+            echo "<option value='$id'>$name</option>";
+          }
         }
         ?>
 
       </select>
 
+      <input class= "form-row" type="date" min="2022-01-01" max="2030-01-01">
 
-      <button type="submit">Pesquisar</button>
+      <!--
+      <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
+        <input placeholder="Select date" type="text" id="example" class="form-row">
+        <i class="fas fa-calendar input-prefix"></i>
+      </div>
+      <script>
+      $('.datepicker').datepicker({
+      inline: true
+      });
+      </script>
+    -->
+
+      <button class="btn btn-info" type="submit">Pesquisar</button>
     </form>
-    <table border="5">
+    <table class="table">
       <thead>
         <tr>
           <th>Data</th>
@@ -65,19 +84,19 @@ $relatorios = [
 
           <tr>
             <td>
-              <?= $relatorio[0] ?>
+              <?= $relatorio["MOVI_DATE"] ?>
             </td>
             <td>
-              <?= $relatorio[1] ?>
+              <?= $relatorio["MOVI_PESO"] ?>
             </td>
             <td>
-              <?= $relatorio[2] ?>
+              <?= $relatorio["MOVI_DESC"] ?>
             </td>
             <td>
-              <?= $relatorio[3] ?>
+              <?= $relatorio["MOVI_PESOSAIDA"] ?>
             </td>
             <td>
-              <?= $relatorio[4] ?>
+              <?= $relatorio["MOVI_PESO"] - $relatorio["MOVI_PESOSAIDA"] ?>
             </td>
           </tr>
 
@@ -87,13 +106,24 @@ $relatorios = [
     </table>
 
 
-    <button>voltar</button>
-    <button>imprimir</button>
+    <div >      
+      <button class="btn btn-info" onclick="window.location.href='http://localhost/src/pages/home/index.php'">Voltar</button>
+    </div>
+    <div id="d">  
+      <script language="javascript">
+        function imprime (text) {
+          text=document
+            print(text)
+        } 
+      </script>
+
+      <form>
+        <input class="btn btn-info" type="button" value="Imprimir" name="Imprimir" onclick="imprime()"/>  
+      </form>
+    </div>
 
     <?php include '../view/bootstrap_foot.php'; ?>
 
 </body>
 
-
-</html> */
-
+</html>
