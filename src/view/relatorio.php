@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 require "RelatorioView.php";
 
 $view = new RelatorioView();
@@ -8,6 +9,7 @@ $view = new RelatorioView();
 $funcionarios = $view->getRelatorioController()->listarFuncionarios();
 $movimentos = $view->getRelatorioController()->listarTipoMovimento();
 $relatorios = $view->consultarDadosRelatorio();
+
 
 ?>
 <!DOCTYPE html>
@@ -68,6 +70,7 @@ $relatorios = $view->consultarDadosRelatorio();
 
       <button class="btn btn-info" type="submit">Pesquisar</button>
     </form>
+
     <table class="table">
       <thead>
         <tr>
@@ -79,7 +82,7 @@ $relatorios = $view->consultarDadosRelatorio();
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($relatorios as $relatorio): ?>
+        <?php foreach ($relatorios as $relatorio) : ?>
 
 
           <tr>
@@ -105,6 +108,53 @@ $relatorios = $view->consultarDadosRelatorio();
 
     </table>
 
+    <div class="container text-center">
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-secondary" onclick="window.location.href='http://localhost/src/pages/home/index.php'">Voltar</button>
+        </div>
+        <div class="col">
+          <script language="javascript">
+            function imprime(text) {
+              text = document
+              print(text)
+            }
+          </script>
+
+          <form>
+            <input class="btn btn-secondary" type="button" value="Imprimir" name="Imprimir" onclick="imprime()" />
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!--      
+    <div class="btn btn-secondary">
+      <div>
+        <button onclick="window.location.href='http://localhost/src/pages/home/index.php'">Voltar</button>
+      </div>
+
+
+      <div id="d">
+        <script language="javascript">
+          function imprime(text) {
+            text = document
+            print(text)
+          }
+        </script>
+
+        <form>
+          <input type="button" value="Imprimir" name="Imprimir" onclick="imprime()" />
+        </form>
+      </div>
+
+    </div>
+        -->
+  </div>
+  <?php include '../view/bootstrap_foot.php'; ?>
+
 
     <div >      
       <button class="btn btn-info" onclick="window.location.href='http://localhost/src/pages/home/index.php'">Voltar</button>
@@ -127,3 +177,4 @@ $relatorios = $view->consultarDadosRelatorio();
 </body>
 
 </html>
+

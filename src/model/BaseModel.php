@@ -58,7 +58,7 @@ class BaseModel
     public function executarDml($query): bool
     {
         try {
-            var_dump($query);
+            $this->conexao = Conexao::conectar();
             $stmt = mysqli_prepare($this->conexao, $query);
             return mysqli_stmt_execute($stmt);
         } catch (PDOException $exce) {
@@ -72,6 +72,7 @@ class BaseModel
     public function executarDql($query)
     {
         try {
+            $this->conexao = Conexao::conectar();
             return mysqli_query($this->conexao, $query);
         } catch (PDOException $exce) {
             echo "Erro ao executar DQL!";
@@ -82,7 +83,7 @@ class BaseModel
 
     private function fecharConexao()
     {
-        mysqli_close($this->conexao);
+            mysqli_close($this->conexao);
     }
 
     private function juntarCampos($valores)

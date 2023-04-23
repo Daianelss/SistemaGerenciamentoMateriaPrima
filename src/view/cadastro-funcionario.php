@@ -1,10 +1,6 @@
 <?php
-require 'CadastroFuncionarioView.php'; // Inclui o arquivo da classe bancaview
-
-// Instancia a classe bancaview
+require 'CadastroFuncionarioView.php';
 $view = new CadastroFuncionarioView();
-
-// Chama o método para renderizar o formulário de cadastro
 ?>
 
 <!doctype html>
@@ -19,40 +15,34 @@ $view = new CadastroFuncionarioView();
 <body>
 
     <h1>Cadastro de Funcionário</h1>
-    <form method="post" name="editarSalvar">
+    <form method="post" name="formSalvarEditar" action="cadastro-funcionario.php">
         <label for="funcionario">Funcionário:</label>
-        <input type="text" id="funcionario" name="funcionario" required><br>
-        <input type="submit" value="Salvar">
+        <input type="text" id="nomeFuncionario" name="nomeFuncionario" required><br>
+        <input type="hidden" id="idFuncionario" name="idFuncionario"><br>
+        <input type="submit" value="Salvar" name="salvar">
     </form>
 
-    <?php
-    $view->dispararAcao();
-    $view->renderizarTabela();
-    ?>
+    <?= $view->dispararAcao() ?>
+
+    <form method="post" name="formTabela" action="cadastro-funcionario.php">
+
+        <table class='table table-striped'>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+            </tr>
+            <?= $view->renderizarTabela() ?>
+        </table>
+    </form>
 
     <script>
-        const botoesEditar = document.querySelectorAll('.btn-editar');
-        botoesEditar.forEach(botao => {
-            botao.addEventListener('click', () => {
-                const id = botao.dataset.id;
-                const linha = botao.parentNode.parentNode;
-                const nome = linha.querySelector('td:nth-child(2)').textContent;
-                const form = document.querySelector('form[name="editarSalvar"]');
-                form.funcionario.value = nome;
+        function preencherCampos(evento) {
+            let elemento = evento.target;
 
-                //Verifica se o campo hidden já existe
-                const campoIdhidden = form.querySelector('input[name="id"]');
-                const campoIdtext = form.querySelector('input[name="idtext"]');
-
-                if (campoIdhidden) {
-                    campoIdhidden.value = id;
-                    campoIdtext.value = id;
-                } else {
-                    form.insertAdjacentHTML('beforeend', '<input type="hidden" name="id" value="' + id + '">');
-                    form.insertAdjacentHTML('beforeend', '<input type="text" name="idtext" value="' + id + '">');
-                }
-            });
-        });
+            let td = document.querySelector(`td[id="${elemento.value}"]`);
+            let inputNomeFuncionario = document.querySelector('#nomeFuncionario').value = td.textContent;
+            document.querySelector('#idFuncionario').setAttribute('value', elemento.value);
+        }
     </script>
 
     <?php
