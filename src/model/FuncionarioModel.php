@@ -1,5 +1,5 @@
 <?php
-include_once "BaseModel.php";
+include "BaseModel.php";
 class FuncionarioModel extends BaseModel{
 
     public $nomeFuncionario;

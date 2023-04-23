@@ -1,6 +1,6 @@
 <?php
-include_once "../controller/Utils.php";
-include_once "../config/Conexao.php";
+include "../controller/Utils.php";
+include "../config/Conexao.php";
 class BaseModel
 {
     private $conexao;
