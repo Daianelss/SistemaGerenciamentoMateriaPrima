@@ -13,8 +13,8 @@ include '../../view/bootstrap_head.php';
     <h2>Escolha uma opção abaixo:</h2>
     <!-- Botões para as opções -->
     <a href="../../view/banca.php" class="btn btn-info">Bancas</a>
-    <a href="../../view/cadastro.php" class="btn btn-info">Funcionários</a>
-    <a href="materia_prima.html" class="btn btn-info">Matéria Prima</a>
+    <a href="../../view/cadastro-funcionario.php" class="btn btn-info">Funcionários</a>
+    <a href="../../view/cadastro-materia-prima.php" class="btn btn-info">Matéria Prima</a>
     <a href="peroxido.html" class="btn btn-info">Peroxido</a>
     <a href="politriz.html" class="btn btn-info">Politriz</a>
     <a href="conserto.html" class="btn btn-info">Conserto</a>
