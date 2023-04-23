@@ -1,3 +1,5 @@
+DROP DATABASE `gerenciamentomateriaprima`
+
 -- SQL para criar o banco de dados
 CREATE DATABASE IF NOT EXISTS `gerenciamentomateriaprima`;
 
