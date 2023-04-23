@@ -21,8 +21,6 @@ $relatorios = [
   ['28/01/2023', '21.52', '2 pulseiras', '22.01', '-0.49'],
   ['28/09/2023', '21.52', 'Pulseira azul', '22.01', '-0.49'],
   ['28/01/2015', '21.52', 'Pulseira', '22.01', '-0.49'],
-
-
 ];
 
 ?>
@@ -38,7 +36,6 @@ $relatorios = [
 </head>
 
 <body>
-
   <h1 class="text-center m-5 mx-auto">Sistema de Gerenciamento de Materiais</h1>
   <div class="justify-content-center">
 
@@ -175,7 +172,8 @@ $relatorios = [
   </div>
   <?php include '../view/bootstrap_foot.php'; ?>
 
+
 </body>
 
-
 </html>
+
