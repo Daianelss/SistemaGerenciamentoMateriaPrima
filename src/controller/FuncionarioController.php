@@ -34,7 +34,7 @@ class FuncionarioController
         if (mysqli_num_rows($result) > 0) {
             return $result;
         } else {
-            return "Não foram encontrados registros na tabela.";
+            return null;
         }
     }
 

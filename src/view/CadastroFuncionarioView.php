@@ -33,9 +33,13 @@ class CadastroFuncionarioView
     {
         $result = $this->funcionarioController->listarFuncionarios();
 
+        
         // Iniciar a tabela HTML
         echo "<table class='table'>";
         echo "<tr><th>ID</th><th>Nome</th></tr>";
+        
+        if ($result == null)
+            return;
         // Loop através dos dados da tabela
         while ($row = mysqli_fetch_assoc($result)) {
             // Adicionar uma linha para cada registro
