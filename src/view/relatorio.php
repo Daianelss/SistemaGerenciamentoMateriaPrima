@@ -10,6 +10,19 @@ $relatorios = [
   ['28/01/2022', '21.52', 'pulseira e brinco', '22.01', '-0.49'],
   ['28/01/2023', '21.52', '2 pulseiras', '22.01', '-0.49'],
   ['28/09/2023', '21.52', 'Pulseira azul', '22.01', '-0.49'],
+  ['28/01/2015', '21.52', 'Pulseira', '22.01', '-0.49'],
+  ['28/01/2021', '21.52', 'colar redondo', '22.01', '-0.49'],
+  ['28/01/2022', '21.52', 'pulseira e brinco', '22.01', '-0.49'],
+  ['28/01/2023', '21.52', '2 pulseiras', '22.01', '-0.49'],
+  ['28/09/2023', '21.52', 'Pulseira azul', '22.01', '-0.49'],
+  ['28/01/2015', '21.52', 'Pulseira', '22.01', '-0.49'],
+  ['28/01/2021', '21.52', 'colar redondo', '22.01', '-0.49'],
+  ['28/01/2022', '21.52', 'pulseira e brinco', '22.01', '-0.49'],
+  ['28/01/2023', '21.52', '2 pulseiras', '22.01', '-0.49'],
+  ['28/09/2023', '21.52', 'Pulseira azul', '22.01', '-0.49'],
+  ['28/01/2015', '21.52', 'Pulseira', '22.01', '-0.49'],
+  
+
 ];
 
 ?>
@@ -25,20 +38,22 @@ $relatorios = [
 </head>
 
 <body>
-  <h1 align="center">Sistema de Gerenciamento de Materiais</h>
+  <div>
+  <h1 class ="container, row, col text-center">Sistema de Gerenciamento de Materiais</h>
+</div>
     <form>
-      <select name="funcionarios">
+      <select class="form-row, border-primary border-3"  name="todos">
         <?php
-        $funcionarios = array("Funcionarios", "João", "Lucas", "Bruno", "Carla");
+        $funcionarios = array("Todos", "",);
         foreach ($funcionarios as $funcionario) {
           echo "<option value='$funcionario'>$funcionario</option>";
         }
         ?>
       </select>
 
-      <select name="movimentos">
+      <select class="form-row, border-primary border-3" name="movimentos">
         <?php
-        $movimentos = array("Movimento", "peróxido", "politriz", "magneto", "ródio");
+        $movimentos = array("peróxido", "politriz", "magneto", "ródio");
         foreach ($movimentos as $movimento) {
           echo "<option value='$movimento'>$movimento</option>";
         }
@@ -46,10 +61,24 @@ $relatorios = [
 
       </select>
 
+      <input class= "form-row" type="date" min="2022-01-01" max="2030-01-01">
 
-      <button type="submit">Pesquisar</button>
+      <!--
+      <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
+        <input placeholder="Select date" type="text" id="example" class="form-row">
+        <i class="fas fa-calendar input-prefix"></i>
+      </div>
+      <script>
+      $('.datepicker').datepicker({
+      inline: true
+      });
+      </script>
+    -->
+
+
+      <button class="btn btn-info" type="submit">Pesquisar</button>
     </form>
-    <table border="5">
+    <table class="table">
       <thead>
         <tr>
           <th>Data</th>
@@ -86,14 +115,27 @@ $relatorios = [
 
     </table>
 
+    <div >      
+    <button class="btn btn-info" onclick="window.location.href='http://localhost/src/pages/home/index.php'">Voltar</button>
+    </div>
+    
 
-    <button>voltar</button>
-    <button>imprimir</button>
+    <div id="d">  
+          <script language="javascript">
+          function imprime (text) {
+              text=document
+              print(text)
+          } 
+          </script>
 
+      <form>
+        <input class="btn btn-info" type="button" value="Imprimir" name="Imprimir" onclick="imprime()"/>  
+        </form>
+        </div>    
     <?php include '../view/bootstrap_foot.php'; ?>
 
 </body>
 
 
-</html> */
+</html> 
 
