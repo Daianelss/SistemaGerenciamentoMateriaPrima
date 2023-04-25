@@ -25,6 +25,9 @@ $view = new CadastroMateriaPrimaView();
     </form>
 
     <?= $view->dispararAcao() ?>
+    
+    <a href="../pages/home/index.php">Voltar</a>
+
     <form method="post" name="formTabela" action="cadastro-materia-prima.php">
 
         <table class='table table-striped'>

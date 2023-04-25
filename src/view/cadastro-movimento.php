@@ -41,7 +41,7 @@ $view = new CadastroMovimentoView();
         <input type="hidden" id="idMovimento" name="idMovimento"><br>
         <input type="submit" value="Salvar" name="salvar">
     </form>
-
+    <a href="../pages/home/index.php">Voltar</a>
     <?= $view->dispararAcao() ?>
     <form method="post" name="formTabela" action="cadastro-movimento.php">
 

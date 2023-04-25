@@ -28,6 +28,8 @@ $view = new CadastroFuncionarioView();
 
     <?= $view->dispararAcao() ?>
 
+    <a href="../pages/home/index.php">Voltar</a>
+
     <form method="post" name="formTabela" action="cadastro-funcionario.php">
 
         <table class='table table-secondary table-striped table-hover mt-5'>
