@@ -1,7 +1,7 @@
 <?php
 include_once "../controller/Utils.php";
 include_once "../config/Conexao.php";
-class BaseModel
+abstract class BaseModel
 {
     private $conexao;
     public $nomeTabela;
