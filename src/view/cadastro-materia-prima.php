@@ -1,10 +1,6 @@
 <?php
-require 'CadastroMateriaPrimaView.php'; // Inclui o arquivo da classe bancaview
-
-// Instancia a classe bancaview
+require 'CadastroMateriaPrimaView.php';
 $view = new CadastroMateriaPrimaView();
-
-// Chama o método para renderizar o formulário de cadastro
 ?>
 
 <!doctype html>
@@ -12,49 +8,49 @@ $view = new CadastroMateriaPrimaView();
 
 <head>
     <meta charset="UTF-8" />
-    <title>Funcionário</title>
+    <title>Materia Prima</title>
     <?php include '../view/bootstrap_head.php'; ?>
 </head>
 
 <body>
 
     <h1>Cadastro de tipo de Matéria Prima</h1>
-    <form method="post" name="editarSalvar">
-        <label for="materiaPrima">Nome:</label>
-        <input type="text" id="materiaPrima" name="materiaPrima" required><br>
-        <label for="descricaoMateriaPrima">Descrição:</label>
-        <input type="text" id="descricaoMateriaPrima" name="descricaoMateriaPrima" required><br>
-        <input type="submit" value="Salvar">
+    <form method="post" name="formSalvarEditar" action="cadastro-materia-prima.php">
+        <label for="nomeMateriaPrima">Nome:</label>
+        <input type="text" id="nomeMateriaPrima" name="nomeMateriaPrima" required><br>
+        <label for="descMateriaPrima">Descrição:</label>
+        <input type="text" id="descMateriaPrima" name="descMateriaPrima" required><br>
+        <input type="hidden" id="idMateriaPrima" name="idMateriaPrima"><br>
+        <input type="submit" value="Salvar" name="salvar">
     </form>
 
-    <?php
-    $view->dispararAcao();
-    $view->renderizarTabela();
-    ?>
+    <?= $view->dispararAcao() ?>
+    <form method="post" name="formTabela" action="cadastro-materia-prima.php">
+
+        <table class='table table-striped'>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+            </tr>
+            <?= $view->renderizarTabela() ?>
+        </table>
+    </form>
 
     <script>
-        const botoesEditar = document.querySelectorAll('.btn-editar');
-        botoesEditar.forEach(botao => {
-            botao.addEventListener('click', () => {
-                const id = botao.dataset.id;
-                const linha = botao.parentNode.parentNode;
-                const nome = linha.querySelector('td:nth-child(2)').textContent;
-                const form = document.querySelector('form[name="editarSalvar"]');
-                form.materiaPrima.value = nome;
+        function preencherCampos(evento) {
+            let botaoEditar = evento.target;
 
-                //Verifica se o campo hidden já existe
-                const campoIdhidden = form.querySelector('input[name="id"]');
-                const campoIdtext = form.querySelector('input[name="idtext"]');
+            let tdNomeMateriaPrima = document.querySelector(`td[name="tdNomeMateriaPrima"][id="${botaoEditar.value}"]`);
+            document.querySelector('#nomeMateriaPrima').value = tdNomeMateriaPrima.textContent;
 
-                if (campoIdhidden) {
-                    campoIdhidden.value = id;
-                    campoIdtext.value = id;
-                } else {
-                    form.insertAdjacentHTML('beforeend', '<input type="hidden" name="id" value="' + id + '">');
-                    form.insertAdjacentHTML('beforeend', '<input type="text" name="idtext" value="' + id + '">');
-                }
-            });
-        });
+            let tdDescMateriaPrima = document.querySelector(`td[name="tdDescMateriaPrima"][id="${botaoEditar.value}"]`);
+            document.querySelector('#descMateriaPrima').value = tdDescMateriaPrima.textContent;
+
+            document.querySelector('#idMateriaPrima').setAttribute('value', botaoEditar.value);
+
+
+        }
     </script>
 
     <?php

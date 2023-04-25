@@ -45,13 +45,12 @@ class CadastroFuncionarioView
 
         if ($result == null)
             return;
-
         // Loop através dos dados da tabela
         while ($row = mysqli_fetch_assoc($result)) {
             // Adicionar uma linha para cada registro
             echo "<tr>";
             echo "<td>" . $row["FUNC_ID"] . "</td>";
-            echo "<td id='" . $row["FUNC_ID"] . "'>" . $row["FUNC_NOME"] . "</td>";
+            echo "<td name='tdNomeFuncionario' id='" . $row["FUNC_ID"] . "'>" . $row["FUNC_NOME"] . "</td>";
             echo '<td> <button type="button" id="editar" onclick="preencherCampos(event)" name="idFuncionarioEditar" value="' . $row["FUNC_ID"] . '" class="btn-editar btn btn-primary">Editar</button>';
 
             if ($row["FUNC_STATUS"] == "1")

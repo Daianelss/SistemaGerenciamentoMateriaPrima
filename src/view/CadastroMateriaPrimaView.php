@@ -12,46 +12,63 @@ class CadastroMateriaPrimaView
 
     public function dispararAcao()
     {
-        if (isset($_POST["id"])) {
+        $this->anularVaziosPost();
 
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                echo "Editar";
-                // Chama o método para receber os dados do formulário
-                $this->materiaPrimaController->dispararAcao($_POST["materiaPrima"], $_POST["id"]);
-            }
+        $salvar = !isset($_POST["salvar"]) ? null : $_POST["salvar"];
+        $nomeMateriaPrima = !isset($_POST["nomeMateriaPrima"]) ? null : $_POST["nomeMateriaPrima"];
+        $descMateriaPrima = !isset($_POST["descMateriaPrima"]) ? null : $_POST["descMateriaPrima"];
+        $idMateriaPrima = !isset($_POST["idMateriaPrima"]) ? null : $_POST["idMateriaPrima"];
+        $idMateriaPrimaAtivo = !isset($_POST["idMateriaPrimaAtivo"]) ? null : $_POST["idMateriaPrimaAtivo"];
+        $idMateriaPrimaInativo = !isset($_POST["idMateriaPrimaInativo"]) ? null : $_POST["idMateriaPrimaInativo"];
+
+        if ($salvar != null && $idMateriaPrima != null) {
+            $this->materiaPrimaController->editarMateriaPrima($nomeMateriaPrima, $descMateriaPrima, $idMateriaPrima);
+        } else if ($salvar != null) {
+            $this->materiaPrimaController->cadastrarMateriaPrima($nomeMateriaPrima, $descMateriaPrima);
         }
 
-        // Verifica se o formulário foi enviados
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            echo "Salvar";
-            // Chama o método para receber os dados do formulário
-            $this->materiaPrimaController->dispararAcao($_POST["materiaPrima"],$_POST["descricaoMateriaPrima"]);
+        if ($idMateriaPrimaAtivo != null) {
+            $this->materiaPrimaController->alterarStatus(1, $idMateriaPrimaAtivo);
+        } else if ($idMateriaPrimaInativo != null) {
+            $this->materiaPrimaController->alterarStatus(0, $idMateriaPrimaInativo);
+        } else {
+            unset($_POST);
+            return;
         }
+        unset($_POST);
+
+        header("Location: ../view/cadastro-materia-prima.php");
     }
 
     public function renderizarTabela()
     {
         $result = $this->materiaPrimaController->listarMateriaPrimas();
 
-        // Iniciar a tabela HTML
-        echo "<table class='table'>";
-        echo "<tr><th>ID</th><th>Nome</th></tr>";
+        if ($result == null)
+            return;
+
         // Loop através dos dados da tabela
         while ($row = mysqli_fetch_assoc($result)) {
             // Adicionar uma linha para cada registro
             echo "<tr>";
             echo "<td>" . $row["TIMP_ID"] . "</td>";
-            echo "<td>" . $row["TIMP_NOME"] . "</td>";
-            echo "<td>" . $row["TIMP_DESCRICAO"] . "</td>";
-            echo '<td> <button id="editar" class="btn-editar btn btn-primary" data-id="' . $row["TIMP_ID"] . '">Editar</button>';
+            echo "<td name='tdNomeMateriaPrima' id='" . $row["TIMP_ID"] . "'>" . $row["TIMP_NOME"] . "</td>";
+            echo "<td name='tdDescMateriaPrima' id='" . $row["TIMP_ID"] . "'>" . $row["TIMP_DESCRICAO"] . "</td>";
+            echo '<td> <button type="button" id="editar" onclick="preencherCampos(event)" name="idMateriaPrimaEditar" value="' . $row["TIMP_ID"] . '" class="btn-editar btn btn-primary">Editar</button>';
 
             if ($row["TIMP_STATUS"] == "1")
-                echo '<td> <button class="btn btn-status btn-success" data-id="' . $row["TIMP_ID"] . '">Ativado</button>';
+                echo '<td> <button type="submit" name="idMateriaPrimaAtivo" class="btn btn-status btn-success" value="' . $row["TIMP_ID"] . '">Ativado</button>';
             else
-                echo '<td> <button class="btn btn-status btn-danger" data-id="' . $row["TIMP_ID"] . '">Inativo</button>';
+                echo '<td> <button type="submit" name="idMateriaPrimaInativo" class="btn btn-status btn-danger" value="' . $row["TIMP_ID"] . '">Inativo</button>';
             echo "</tr>";
         }
-        // Fechar a tabela HTML
-        echo "</table>";
+    }
+
+    public function anularVaziosPost()
+    {
+        foreach ($_POST as $value) {
+            if (empty($value))
+                $value = null;
+        }
     }
 }

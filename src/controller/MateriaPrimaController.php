@@ -9,23 +9,17 @@ class MateriaPrimaController
         $this->materiaPrima = new MateriaPrimaModel();
     }
 
-    function dispararAcao($nomeMateriaPrima, $descricaoMateriaPrima, $id = null)
-    {
+    public function cadastrarMateriaPrima($nomeMateriaPrima, $descMateriaPrima){
         $this->materiaPrima->nomeMateriaPrima = Utils::tratarInjection($nomeMateriaPrima);
-        $this->materiaPrima->descricaoMateriaPrima = Utils::tratarInjection($descricaoMateriaPrima);
-        $this->materiaPrima->idMateriaPrima = $id;
-
-        if ($id != '') {
-            echo "Editar MateriaPrimas <br>";
-            $this->materiaPrima->editarMateriaPrima($id);
-            header("Location: ../view/cadastro-materia-prima.php");
-            exit();
-        }
-
-        echo "Cadastro Controller <br>";
+        $this->materiaPrima->descMateriaPrima = Utils::tratarInjection($descMateriaPrima);
         $this->materiaPrima->cadastrarmateriaPrima();
-        header("Location: ../view/cadastro-materia-prima.php");
-        exit();
+   
+    }
+
+    public function editarMateriaPrima($nomeMateriaPrima, $descMateriaPrima, $idMateriaPrima){
+        $this->materiaPrima->nomeMateriaPrima = Utils::tratarInjection($nomeMateriaPrima);
+        $this->materiaPrima->descMateriaPrima = Utils::tratarInjection($descMateriaPrima);
+        $this->materiaPrima->editarMateriaPrima($idMateriaPrima);
     }
 
     public function listarMateriaPrimas()
@@ -35,7 +29,7 @@ class MateriaPrimaController
         if (mysqli_num_rows($result) > 0) {
             return $result;
         } else {
-            return "Não foram encontrados registros na tabela.";
+            return null;
         }
     }
 

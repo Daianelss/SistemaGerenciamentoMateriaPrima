@@ -37,11 +37,11 @@ $view = new CadastroFuncionarioView();
 
     <script>
         function preencherCampos(evento) {
-            let elemento = evento.target;
+            let botaoEditar = evento.target;
 
-            let td = document.querySelector(`td[id="${elemento.value}"]`);
-            let inputNomeFuncionario = document.querySelector('#nomeFuncionario').value = td.textContent;
-            document.querySelector('#idFuncionario').setAttribute('value', elemento.value);
+            let tdNomeFuncionario = document.querySelector(`td[name="tdNomeFuncionario"][id="${botaoEditar.value}"]`);
+            document.querySelector('#nomeFuncionario').value = tdNomeFuncionario.textContent;
+            document.querySelector('#idFuncionario').setAttribute('value', botaoEditar.value);
         }
     </script>
 
