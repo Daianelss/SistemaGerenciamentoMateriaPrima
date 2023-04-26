@@ -14,15 +14,16 @@
 </header>
 
 <body>
-    <div class="mx-auto mt-5">
-
-        <h2 class="text-center" style="height: 180px;">Escolha uma opção abaixo:</h2>
-        <!-- Botões para as opções -->
-        <div class="col-md-12 d-flex align-items-center justify-content-center">
-            <a href="../../view/relatorio.php" class="btn btn-secondary" style="margin-right: 10px;">Relatório</a>
-            <a href="../../view/cadastro-movimento.php" class="btn btn-secondary" style="margin-right: 10px;">Movimentos</a>
-            <a href="../../view/cadastro-funcionario.php" class="btn btn-secondary" style="margin-right: 10px;">Funcionários</a>
-            <a href="../../view/cadastro-materia-prima.php" class="btn btn-secondary" style="margin-right: 10px;">Matéria Prima</a>
+    <div class="container clearfix">
+        <div class="mx-auto mt-5 border border-dark pt-5 pb-5 container">
+            <h2 class="text-center" style="height: 190px;">Escolha uma opção abaixo:</h2>
+            <!-- Botões para as opções -->
+            <div class="col-md-12 d-flex align-items-center justify-content-center">
+                <a href="../../view/relatorio.php" class="btn btn-secondary" style="margin-right: 10px;">Relatório</a>
+                <a href="../../view/cadastro-movimento.php" class="btn btn-secondary" style="margin-right: 10px;">Movimentos</a>
+                <a href="../../view/cadastro-funcionario.php" class="btn btn-secondary" style="margin-right: 10px;">Funcionários</a>
+                <a href="../../view/cadastro-materia-prima.php" class="btn btn-secondary" style="margin-right: 10px;">Matéria Prima</a>
+            </div>
         </div>
     </div>
 

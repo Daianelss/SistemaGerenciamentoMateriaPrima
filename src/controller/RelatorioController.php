@@ -41,15 +41,15 @@ class RelatorioController
         return $arrayTipoMovimento;
     }
 
-    public function listarDadosRelatorio($funcionario, $tipo_movimento){
+    public function listarDadosRelatorio($funcionario, $tipo_movimento, $tipo_data){
         
-        if($funcionario === "" && $tipo_movimento === ""){
+        if($funcionario === "" && $tipo_movimento === "" && $tipo_data === ""){
             $arrayRelatorioModel = 
                 $this->relatorioModel->consultarTodos();
         }else{
             $arrayRelatorioModel = 
                 $this->relatorioModel->consultarComFiltro(
-                    $funcionario, $tipo_movimento);
+                    $funcionario, $tipo_movimento, $tipo_data);
         }
         
 

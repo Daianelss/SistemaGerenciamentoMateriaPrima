@@ -18,21 +18,20 @@ $view = new CadastroFuncionarioView();
 
 <body>
 
-
+    <div class="container d-flex flex-row border border-dark mt-5 mb-5 pt-4 p-4">
     <form method="post" name="formSalvarEditar" action="cadastro-funcionario.php">
-        <label class= "mt-5"for="funcionario">Funcionário:</label>
+        <label class="mt-5 me-3" for="funcionario">Funcionário:</label>
         <input type="text" id="nomeFuncionario" name="nomeFuncionario" required><br>
         <input type="hidden" id="idFuncionario" name="idFuncionario"><br>
-        <input class= "btn btn-secondary" type="submit" value="Salvar" name="salvar">
+        <input class="btn btn-secondary" type="submit" value="Salvar" name="salvar">
+        <button class="btn btn-secondary" onclick="window.location.href='http://localhost/src/pages/home/index.php'">Voltar</button>
     </form>
-
+</div>
     <?= $view->dispararAcao() ?>
-
-    <a href="../pages/home/index.php">Voltar</a>
-
+    
     <form method="post" name="formTabela" action="cadastro-funcionario.php">
 
-        <table class='table table-secondary table-striped table-hover mt-5'>
+        <table class='table table-secondary table-bordered container table-striped table-hover mt-5'>
             <tr>
                 <th>ID</th>
                 <th>Nome</th>

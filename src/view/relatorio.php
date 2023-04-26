@@ -27,53 +27,44 @@ $relatorios = $view->consultarDadosRelatorio();
 </header>
 
 <body>
-  <div class="container, row, col text-center mt-5 mb-5">
-    <form>
-      <select class="form-row, border-secondary border-2 d-print-none" name="funcionarios">
-        <option value=''>Todos</option>
-        <?php
-        if (count($funcionarios) > 0) {
-          foreach ($funcionarios as $funcionario) {
-            $id   = $funcionario['FUNC_ID'];
-            $name = $funcionario['FUNC_NOME'];
-            echo "<option value='$id'>$name</option>";
-          }
-        }
-        ?>
-      </select>
+  <div>
+    <div class="d-print-none">
+      <div class="container border border-dark mt-5 mb-5 pt-4 p-4">
+        <form>
+          <select class="form-row, border-secondary border-2 d-print-none me-3" name="funcionarios">
+            <option value=''>Todos</option>
+            <?php
+            if (count($funcionarios) > 0) {
+              foreach ($funcionarios as $funcionario) {
+                $id   = $funcionario['FUNC_ID'];
+                $name = $funcionario['FUNC_NOME'];
+                echo "<option value='$id'>$name</option>";
+              }
+            }
+            ?>
+          </select>
 
-      <select class="form-row, border-secondary border-2 d-print-none" name="movimentos">
-        <option value=''>Todos</option>
-        <?php
-        if (count($movimentos) > 0) {
-          foreach ($movimentos as $movimento) {
-            $id   = $movimento['TIMO_ID'];
-            $name = $movimento['TIMO_NOME'];
-            echo "<option value='$id'>$name</option>";
-          }
-        }
-        ?>
+          <select class="form-row, border-secondary border-2 d-print-none me-3" name="movimentos">
+            <option value=''>Movimentos</option>
+            <?php
+            if (count($movimentos) > 0) {
+              foreach ($movimentos as $movimento) {
+                $id   = $movimento['TIMO_ID'];
+                $name = $movimento['TIMO_NOME'];
+                echo "<option value='$id'>$name</option>";
+              }
+            }
+            ?>
 
-      </select>
+          </select>
 
-      <input class="form-row d-print-none" type="date" min="2022-01-01" max="2030-01-01">
+          <input name="datafiltro" class="form-row d-print-none me-3" type="date" min="1900-01-01" max="2030-01-01">
 
-      <!--
-      <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
-        <input placeholder="Select date" type="text" id="example" class="form-row">
-        <i class="fas fa-calendar input-prefix"></i>
+          <button class="btn btn-secondary d-print-none" type="submit">Pesquisar</button>
+        </form>
       </div>
-      <script>
-      $('.datepicker').datepicker({
-      inline: true
-      });
-      </script>
-    -->
-
-      <button class="btn btn-secondary d-print-none" type="submit">Pesquisar</button>
-    </form>
-
-    <table class="table mt-5 mb-5">
+    </div>
+    <table class="table table-secondary table-bordered container table-striped table-houver mt-5 mb-5 ">
       <thead>
         <tr>
           <th>Data</th>
@@ -154,7 +145,7 @@ $relatorios = $view->consultarDadosRelatorio();
         -->
   </div>
   <?php
-    include '../view/bootstrap_foot.php';
+  include '../view/bootstrap_foot.php';
   ?>
 
   <footer class="bg-secondary p-3 container-fluid fixed-bottom ">
