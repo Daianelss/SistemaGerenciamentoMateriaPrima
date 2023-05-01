@@ -15,22 +15,27 @@ class CadastroMovimentoView
         $this->anularVaziosPost();
 
         $salvar = !isset($_POST["salvar"]) ? null : $_POST["salvar"];
-        $nomeMovimento = !isset($_POST["nomeMovimento"]) ? null : $_POST["nomeMovimento"];
+        $dataMovimento = !isset($_POST["dataMovimento"]) ? null : $_POST["dataMovimento"];
+        $pesoMovimento = !isset($_POST["pesoMovimento"]) ? null : $_POST["pesoMovimento"];
         $descMovimento = !isset($_POST["descMovimento"]) ? null : $_POST["descMovimento"];
+        $tipoMovimento = !isset($_POST["tipoMovimento"]) ? null : $_POST["tipoMovimento"];
+        $idTipoMovimento = !isset($_POST["tipoMateriaPrimaMovimento"]) ? null : $_POST["tipoMateriaPrimaMovimento"];
+        $idFuncionario = !isset($_POST["funcionarioMovimento"]) ? null : $_POST["funcionarioMovimento"];
         $idMovimento = !isset($_POST["idMovimento"]) ? null : $_POST["idMovimento"];
-        $idMovimentoAtivo = !isset($_POST["idMovimentoAtivo"]) ? null : $_POST["idMovimentoAtivo"];
-        $idMovimentoInativo = !isset($_POST["idMovimentoInativo"]) ? null : $_POST["idMovimentoInativo"];
+        $idMovimentoPrimaAtivo = !isset($_POST["idMovimentoPrimaAtivo"]) ? null : $_POST["idMovimentoPrimaAtivo"];
+        $idMovimentoPrimaInativo = !isset($_POST["idMovimentoPrimaInativo"]) ? null : $_POST["idMovimentoPrimaInativo"];
+
 
         if ($salvar != null && $idMovimento != null) {
-            $this->movimentoController->editarMovimento($nomeMovimento, $descMovimento, $idMovimento);
+            $this->movimentoController->editarMovimento($dataMovimento, $pesoMovimento, $descMovimento, $tipoMovimento, $idTipoMovimento, $idFuncionario,$idMovimento);
         } else if ($salvar != null) {
-            $this->movimentoController->cadastrarMovimento($nomeMovimento, $descMovimento);
+            $this->movimentoController->cadastrarMovimento($dataMovimento, $pesoMovimento, $descMovimento, $tipoMovimento, $idTipoMovimento, $idFuncionario);
         }
 
-        if ($idMovimentoAtivo != null) {
-            $this->movimentoController->alterarStatus(1, $idMovimentoAtivo);
-        } else if ($idMovimentoInativo != null) {
-            $this->movimentoController->alterarStatus(0, $idMovimentoInativo);
+        if ($idMovimentoPrimaAtivo != null) {
+            $this->movimentoController->alterarStatus(1, $idMovimentoPrimaAtivo);
+        } else if ($idMovimentoPrimaInativo != null) {
+            $this->movimentoController->alterarStatus(0, $idMovimentoPrimaInativo);
         } else {
             unset($_POST);
             return;
@@ -51,16 +56,17 @@ class CadastroMovimentoView
         while ($row = mysqli_fetch_assoc($result)) {
             // Adicionar uma linha para cada registro
             echo "<tr>";
-            echo "<td>" . $row["TIMP_ID"] . "</td>";
-            echo "<td name='tdNomeMovimento' id='" . $row["TIMP_ID"] . "'>" . $row["TIMP_NOME"] . "</td>";
-            echo "<td name='tdDescMovimento' id='" . $row["TIMP_ID"] . "'>" . $row["TIMP_DESCRICAO"] . "</td>";
-            echo '<td> <button type="button" id="editar" onclick="preencherCampos(event)" name="idMovimentoEditar" value="' . $row["TIMP_ID"] . '" class="btn-editar btn btn-primary">Editar</button>';
+            echo "<td>" . $row["MOVI_ID"] . "</td>";
+            echo "<td name='tdIdMateriaPrima' id='" . $row["MOVI_ID"] . "'>" . $row["MOVI_ID"] . "</td>";
+            echo "<td name='tdTipoMovimento' id='" . $row["MOVI_ID"] . "'>" . $row["MOVI_TIMO_ID"] . "</td>";
+            echo "<td name='tdMovimento' id='" . $row["MOVI_ID"] . "'>" . $row["MOVI_TIPO"] . "</td>";
+            echo "<td name='tdDataMovimento' id='" . $row["MOVI_ID"] . "'>" . $row["MOVI_DATE"] . "</td>";
+            echo "<td name='tdPesoMovimento' id='" . $row["MOVI_ID"] . "'>" . $row["MOVI_PESO"] . "</td>";
+            echo "<td name='tdDescMovimento' id='" . $row["MOVI_ID"] . "'>" . $row["MOVI_DESC"] . "</td>";
+            echo "<td name='tdIdFuncionario' id='" . $row["MOVI_ID"] . "'>" . $row["MOVI_FUNC_ID"] . "</td>";
 
-            if ($row["TIMP_STATUS"] == "1")
-                echo '<td> <button type="submit" name="idMovimentoAtivo" class="btn btn-status btn-success" value="' . $row["TIMP_ID"] . '">Ativado</button>';
-            else
-                echo '<td> <button type="submit" name="idMovimentoInativo" class="btn btn-status btn-danger" value="' . $row["TIMP_ID"] . '">Inativo</button>';
-            echo "</tr>";
+
+            echo '<td> <button type="button" id="editar" onclick="preencherCampos(event)" name="idMovimentoEditar" value="' . $row["MOVI_ID"] . '" class="btn-editar btn btn-primary">Editar</button>';
         }
     }
 

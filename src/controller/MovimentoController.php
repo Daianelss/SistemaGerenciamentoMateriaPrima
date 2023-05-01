@@ -9,16 +9,24 @@ class MovimentoController
         $this->movimento = new MovimentoModel();
     }
 
-    public function cadastrarMovimento($nomeMovimento, $descMovimento){
-        $this->movimento->nomeMovimento = Utils::tratarInjection($nomeMovimento);
+    public function cadastrarMovimento($dataMovimento, $pesoMovimento, $descMovimento, $tipoMovimento, $idTipoMovimento, $idFuncionario){
+        $this->movimento->dataMovimento = $dataMovimento;
+        $this->movimento->pesoMovimento = $pesoMovimento;
         $this->movimento->descMovimento = Utils::tratarInjection($descMovimento);
+        $this->movimento->tipoMovimento = $tipoMovimento;
+        $this->movimento->idTipoMovimento = $idTipoMovimento;
+        $this->movimento->idFuncionario = $idFuncionario;
         $this->movimento->cadastrarmovimento();
    
     }
 
-    public function editarMovimento($nomeMovimento, $descMovimento, $idMovimento){
-        $this->movimento->nomeMovimento = Utils::tratarInjection($nomeMovimento);
+    public function editarMovimento($dataMovimento, $pesoMovimento, $descMovimento, $tipoMovimento, $idTipoMovimento, $idFuncionario, $idMovimento){
+        $this->movimento->dataMovimento = $dataMovimento;
+        $this->movimento->pesoMovimento = $pesoMovimento;
         $this->movimento->descMovimento = Utils::tratarInjection($descMovimento);
+        $this->movimento->tipoMovimento = $tipoMovimento;
+        $this->movimento->idTipoMovimento = $idTipoMovimento;
+        $this->movimento->idFuncionario = $idFuncionario;
         $this->movimento->editarMovimento($idMovimento);
     }
 

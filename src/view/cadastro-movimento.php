@@ -18,16 +18,18 @@ $view = new CadastroMovimentoView();
     <form method="post" name="formSalvarEditar" action="cadastro-movimento.php">
 
         <label for="funcionarioMovimento">Funcionario:</label>
-        <input type="combobox" id="funcionarioMovimento" name="funcionarioMovimento" required><br>
+        <input type="text" id="funcionarioMovimento" name="funcionarioMovimento" required><br>
 
-        <label for="tipoMateriaPrimaMovimento">Matéria Prima:</label>
-        <input type="combobox" id="tipoMateriaPrimaMovimento" name="tipoMateriaPrimaMovimento" required><br>
+        <label for="tipoMovimento">Movimento:</label>
+        <input type="text" id="tipoMovimento" name="tipoMovimento" required><br>
 
-        <label for="entrada">Movimento</label><br>
-        <input type="radio" id="entrada" name="tipoMovimento" value="1">
+        <label for="entrada">Operacao</label><br>
+        
         <label for="entrada">Entrada</label><br>
-        <input type="radio" id="saida" name="tipoMovimento" value="0">
+        <input type="radio" id="entrada" name="tipoOperacao" value="1">
         <label for="saida">Saída</label><br>
+        <input type="radio" id="saida" name="tipoOperacao" value="0">
+
 
         <label for="dataMovimento">Data:</label>
         <input type="date" id="dataMovimento" name="dataMovimento" required><br>
@@ -59,11 +61,21 @@ $view = new CadastroMovimentoView();
         function preencherCampos(evento) {
             let botaoEditar = evento.target;
 
-            let tdNomeMovimento = document.querySelector(`td[name="tdNomeMovimento"][id="${botaoEditar.value}"]`);
-            document.querySelector('#nomeMovimento').value = tdNomeMovimento.textContent;
+
+            let tdTipoMovimento = document.querySelector(`td[name="tdTipoMovimento"][id="${botaoEditar.value}"]`);
+            document.querySelector('#TipoMovimento').value = tdTipoMovimento.textContent;
+
+            let tdMovimento = document.querySelector(`td[name="tdMovimento"][id="${botaoEditar.value}"]`);
+            document.querySelector('#Movimento').value = tdMovimento.textContent;
+
+            let tdDataMovimento = document.querySelector(`td[name="tdDataMovimento"][id="${botaoEditar.value}"]`);
+            document.querySelector('#DataMovimento').value = tdDataMovimento.textContent;
+
+            let tdPesoMovimento = document.querySelector(`td[name="tdPesoMovimento"][id="${botaoEditar.value}"]`);
+            document.querySelector('#PesoMovimento').value = tdPesoMovimento.textContent;
 
             let tdDescMovimento = document.querySelector(`td[name="tdDescMovimento"][id="${botaoEditar.value}"]`);
-            document.querySelector('#descMovimento').value = tdDescMovimento.textContent;
+            document.querySelector('#DescMovimento').value = tdDescMovimento.textContent;
 
             document.querySelector('#idMovimento').setAttribute('value', botaoEditar.value);
 

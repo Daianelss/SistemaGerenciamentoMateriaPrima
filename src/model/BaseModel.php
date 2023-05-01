@@ -94,7 +94,7 @@ abstract class BaseModel
     private function juntarValores($valores)
     {
         $resultado = "'" . implode("','", $valores) . "'";
-        return $resultado;
+            return $resultado;
     }
 
     private function juntarCamposEditar($campos, $valores)

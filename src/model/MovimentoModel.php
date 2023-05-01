@@ -1,32 +1,39 @@
 <?php
 include_once "BaseModel.php";
-class MovimentoModel extends BaseModel{
+class MovimentoModel extends BaseModel
+{
 
-    public $nomeMovimento;
-    public $idMovimento;
+    public $idFuncionario;
+    public $tipoMovimento;
+    public $idTipoMovimento;
+    public $dataMovimento;
+    public $pesoMovimento;
     public $descMovimento;
-    public $statusMovimento;
 
-    function __construct(){
+
+    function __construct()
+    {
         parent::__construct();
-        $this->nomeTabela = "TIPO_MATERIA_PRIMA";
-        $this->campoId = "TIMP_ID";
-        $this->campoStatus = "TIMP_STATUS";
+        $this->nomeTabela = "movimentacao";
+        $this->campoId = "MOVI_ID";
     }
 
-    public function editarMovimento($id){
-        $campos = array("TIMP_NOME", "TIMP_DESCRICAO");
-        $valores = array($this->nomeMovimento, $this->descMovimento); 
+    public function editarMovimento($id)
+    {
+        $campos = array("MOVI_DATE", "MOVI_PESO", "MOVI_DESC", "MOVI_TIPO", "MOVI_TIMO_ID", "MOVI_FUNC_ID");
+        $valores = array($this->converterData($this->dataMovimento), $this->pesoMovimento, $this->descMovimento, $this->tipoMovimento, $this->idTipoMovimento, $this->idFuncionario);
         $this->editar($campos, $valores, $id);
     }
 
-    public function cadastrarMovimento(){
-        $campos = array("TIMP_NOME", "TIMP_DESCRICAO", "TIMP_STATUS");
-        $valores = array($this->nomeMovimento, $this->descMovimento, "1");
+    public function cadastrarMovimento()
+    {
+        $campos = array("MOVI_DATE", "MOVI_PESO", "MOVI_DESC", "MOVI_TIPO", "MOVI_TIMO_ID", "MOVI_FUNC_ID");
+        $valores = array($this->converterData($this->dataMovimento), $this->pesoMovimento, $this->descMovimento, $this->tipoMovimento, $this->idTipoMovimento, $this->idFuncionario);
         $this->inserir($campos, $valores);
     }
 
-
+    public function converterData($data){
+        //return "STR_TO_DATE('$data','%Y-%m-%d')";
+        return $data;
+    }
 }
-
-?>
