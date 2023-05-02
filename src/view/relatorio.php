@@ -7,7 +7,7 @@ require "RelatorioView.php";
 $view = new RelatorioView();
 
 $funcionarios = $view->getRelatorioController()->listarFuncionarios();
-$movimentos = $view->getRelatorioController()->listarTipoMovimento();
+$movimentos = $view->getRelatorioController()->listarProcesso();
 $relatorios = $view->consultarDadosRelatorio();
 
 
@@ -47,8 +47,8 @@ $relatorios = $view->consultarDadosRelatorio();
         <?php
         if (count($movimentos) > 0) {
           foreach ($movimentos as $movimento) {
-            $id   = $movimento['TIMO_ID'];
-            $name = $movimento['TIMO_NOME'];
+            $id   = $movimento['TIPR_ID'];
+            $name = $movimento['TIPR_NOME'];
             echo "<option value='$id'>$name</option>";
           }
         }
@@ -98,10 +98,7 @@ $relatorios = $view->consultarDadosRelatorio();
               <?= $relatorio["MOVI_DESC"] ?>
             </td>
             <td>
-              <?= $relatorio["MOVI_PESOSAIDA"] ?>
-            </td>
-            <td>
-              <?= $relatorio["MOVI_PESO"] - $relatorio["MOVI_PESOSAIDA"] ?>
+              <?= $relatorio["MOVI_PESO"] ?>
             </td>
           </tr>
 

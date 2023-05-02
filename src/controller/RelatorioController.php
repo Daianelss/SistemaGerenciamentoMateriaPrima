@@ -1,17 +1,17 @@
 <?php
 include "../model/FuncionarioModel.php";
-include "../model/TipoMovimentoModel.php";
+include "../model/ProcessoModel.php";
 include "../model/RelatorioModel.php";
 class RelatorioController
 {
     private FuncionarioModel $funcionarioModel;
-    private TipoMovimentoModel $tipoMovimentoModel;
+    private ProcessoModel $tipoMovimentoModel;
     private RelatorioModel $relatorioModel;
     
     function __construct()
     {
         $this->funcionarioModel = new FuncionarioModel();
-        $this->tipoMovimentoModel = new TipoMovimentoModel();
+        $this->tipoMovimentoModel = new ProcessoModel();
         $this->relatorioModel = new RelatorioModel();
     }
 
@@ -28,28 +28,28 @@ class RelatorioController
         return $arrayFuncionario;
     }
 
-    public function listarTipoMovimento(){
+    public function listarProcesso(){
         
-        $arrayTipoMovimento = $this->tipoMovimentoModel->consultarTodos();
+        $arrayProcesso = $this->tipoMovimentoModel->consultarTodos();
 
-        if (mysqli_num_rows($arrayTipoMovimento) > 0) {
-            return $arrayTipoMovimento->fetch_all(MYSQLI_ASSOC);
+        if (mysqli_num_rows($arrayProcesso) > 0) {
+            return $arrayProcesso->fetch_all(MYSQLI_ASSOC);
         } else {
             return array();
         }
         
-        return $arrayTipoMovimento;
+        return $arrayProcesso;
     }
 
-    public function listarDadosRelatorio($funcionario, $tipo_movimento){
+    public function listarDadosRelatorio($funcionario, $processo){
         
-        if($funcionario === "" && $tipo_movimento === ""){
+        if($funcionario === "" && $processo === ""){
             $arrayRelatorioModel = 
                 $this->relatorioModel->consultarTodos();
         }else{
             $arrayRelatorioModel = 
                 $this->relatorioModel->consultarComFiltro(
-                    $funcionario, $tipo_movimento);
+                    $funcionario, $processo);
         }
         
 

@@ -20,22 +20,22 @@ $view = new CadastroMovimentoView();
         <label for="funcionarioMovimento">Funcionario:</label>
         <input type="text" id="funcionarioMovimento" name="funcionarioMovimento" required><br>
 
-        <label for="tipoMovimento">Movimento:</label>
-        <input type="text" id="tipoMovimento" name="tipoMovimento" required><br>
+        <label for="processoMovimento">Processo:</label>
+        <input type="text" id="processoMovimento" name="processoMovimento" required><br>
 
-        <label for="entrada">Operacao</label><br>
-        
+        <label>Operacao</label><br>
+        <input type="radio" id="entrada" name="tipoOperacaoMovimento" value="1">
         <label for="entrada">Entrada</label><br>
-        <input type="radio" id="entrada" name="tipoOperacao" value="1">
+
+        <input type="radio" id="saida" name="tipoOperacaoMovimento" value="0">
         <label for="saida">Saída</label><br>
-        <input type="radio" id="saida" name="tipoOperacao" value="0">
 
 
         <label for="dataMovimento">Data:</label>
         <input type="date" id="dataMovimento" name="dataMovimento" required><br>
 
         <label for="pesoMovimento">Peso:</label>
-        <input type="text" id="pesoMovimento" name="pesoMovimento" required><br>
+        <input type="number" id="pesoMovimento" name="pesoMovimento" required><br>
 
         <label for="descMovimento">Descrição:</label>
         <input type="text" id="descMovimento" name="descMovimento" required><br>
@@ -50,7 +50,11 @@ $view = new CadastroMovimentoView();
         <table class='table table-striped'>
             <tr>
                 <th>ID</th>
-                <th>Nome</th>
+                <th>Funcionario</th>
+                <th>Processo</th>
+                <th>Tipo Operação</th>
+                <th>Data</th>
+                <th>Peso</th>
                 <th>Descrição</th>
             </tr>
             <?= $view->renderizarTabela() ?>
@@ -62,23 +66,25 @@ $view = new CadastroMovimentoView();
             let botaoEditar = evento.target;
 
 
-            let tdTipoMovimento = document.querySelector(`td[name="tdTipoMovimento"][id="${botaoEditar.value}"]`);
-            document.querySelector('#TipoMovimento').value = tdTipoMovimento.textContent;
+            let tdFuncionarioMovimento = document.querySelector(`td[name="tdFuncionarioMovimento"][id="${botaoEditar.value}"]`);
+            document.querySelector('#funcionarioMovimento').value = tdFuncionarioMovimento.textContent;
 
-            let tdMovimento = document.querySelector(`td[name="tdMovimento"][id="${botaoEditar.value}"]`);
-            document.querySelector('#Movimento').value = tdMovimento.textContent;
+            let tdProcessoMovimento = document.querySelector(`td[name="tdProcessoMovimento"][id="${botaoEditar.value}"]`);
+            document.querySelector('#processoMovimento').value = tdProcessoMovimento.textContent;
 
+            let tdTipoOperacaoMovimento = document.querySelector(`td[name="tdTipoOperacaoMovimento"][id="${botaoEditar.value}"]`);
+            document.querySelector('#tipoOperacaoMovimento').checked = tdDataMovimento.textContent;
+           
             let tdDataMovimento = document.querySelector(`td[name="tdDataMovimento"][id="${botaoEditar.value}"]`);
-            document.querySelector('#DataMovimento').value = tdDataMovimento.textContent;
+            document.querySelector('#dataMovimento').value = tdDataMovimento.textContent;
 
             let tdPesoMovimento = document.querySelector(`td[name="tdPesoMovimento"][id="${botaoEditar.value}"]`);
-            document.querySelector('#PesoMovimento').value = tdPesoMovimento.textContent;
+            document.querySelector('#pesoMovimento').value = parseInt(tdPesoMovimento.textContent);
 
             let tdDescMovimento = document.querySelector(`td[name="tdDescMovimento"][id="${botaoEditar.value}"]`);
-            document.querySelector('#DescMovimento').value = tdDescMovimento.textContent;
+            document.querySelector('#descMovimento').value = tdDescMovimento.textContent;
 
             document.querySelector('#idMovimento').setAttribute('value', botaoEditar.value);
-
 
         }
     </script>

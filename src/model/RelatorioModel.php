@@ -4,11 +4,11 @@ class RelatorioModel extends BaseModel{
 
     function __construct(){
         parent::__construct();
-        $this->nomeTabela = "movimentacao";
+        $this->nomeTabela = "movimento";
         $this->campoId = "MOVI_ID";
     }
 
-    public function consultarComFiltro($funcionario, $tipo_movimento){
+    public function consultarComFiltro($funcionario, $processo){
 
         $query = " select MOVI_ID, MOVI_DATE, MOVI_PESO, MOVI_DESC, MOVI_PESOSAIDA from movimentacao where 1 = 1";
 
@@ -16,8 +16,8 @@ class RelatorioModel extends BaseModel{
             $query = $query . " AND MOVI_FUNC_ID = $funcionario";
         }
 
-        if($tipo_movimento !== ""){
-            $query = $query . " AND MOVI_PROC_ID = $tipo_movimento";
+        if($processo !== ""){
+            $query = $query . " AND MOVI_PROC_ID = $processo";
         }
 
         return $this->executarDql($query);

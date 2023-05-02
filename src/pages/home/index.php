@@ -23,6 +23,7 @@
             <a href="../../view/cadastro-movimento.php" class="btn btn-secondary" style="margin-right: 10px;">Movimentos</a>
             <a href="../../view/cadastro-funcionario.php" class="btn btn-secondary" style="margin-right: 10px;">Funcionários</a>
             <a href="../../view/cadastro-materia-prima.php" class="btn btn-secondary" style="margin-right: 10px;">Matéria Prima</a>
+            <a href="../../view/cadastro-processo.php" class="btn btn-secondary" style="margin-right: 10px;">Cadastro Processo</a>
         </div>
     </div>
 
