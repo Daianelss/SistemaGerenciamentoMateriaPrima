@@ -31,7 +31,7 @@ $relatorios = $view->consultarDadosRelatorio();
     <div class="d-print-none">
       <div class="container border border-dark mt-5 mb-5 pt-4 p-4">
         <form>
-          <select class="form-row, border-secondary border-2 d-print-none me-3" name="funcionarios">
+          <select class="form-row border-secondary border-2 d-print-none me-3" name="funcionarios">
             <option value=''>Todos</option>
             <?php
             if (count($funcionarios) > 0) {
@@ -44,7 +44,7 @@ $relatorios = $view->consultarDadosRelatorio();
             ?>
           </select>
 
-          <select class="form-row, border-secondary border-2 d-print-none me-3" name="movimentos">
+          <select class="form-row border-secondary border-2 d-print-none me-3" name="movimentos">
             <option value=''>Movimentos</option>
             <?php
             if (count($movimentos) > 0) {
@@ -119,37 +119,14 @@ $relatorios = $view->consultarDadosRelatorio();
           </form>
         </div>
       </div>
-
     </div>
-    <!--      
-    <div class="btn btn-secondary">
-      <div>
-        <button onclick="window.location.href='http://localhost/src/pages/home/index.php'">Voltar</button>
-      </div>
-
-
-      <div id="d">
-        <script language="javascript">
-          function imprime(text) {
-            text = document
-            print(text)
-          }
-        </script>
-
-        <form>
-          <input type="button" value="Imprimir" name="Imprimir" onclick="imprime()" />
-        </form>
-      </div>
-
-    </div>
-        -->
   </div>
   <?php
   include '../view/bootstrap_foot.php';
   ?>
 
   <footer class="bg-secondary p-3 container-fluid fixed-bottom ">
-    <h6 class="text-white mt-5 text-center  ">Todos os Direitos Reservados © 2023</h6>
+    <h6 class="text-white mt-5 text-center">Todos os Direitos Reservados © 2023</h6>
   </footer>
 </body>
 

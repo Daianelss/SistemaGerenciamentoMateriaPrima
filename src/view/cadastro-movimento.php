@@ -65,6 +65,8 @@ $view = new CadastroMovimentoView();
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Descrição</th>
+                <th>Edição</th>
+                <th>Status</th>
             </tr>
             <?= $view->renderizarTabela() ?>
         </table>
