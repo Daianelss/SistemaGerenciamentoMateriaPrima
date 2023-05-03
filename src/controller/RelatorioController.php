@@ -41,15 +41,18 @@ class RelatorioController
         return $arrayProcesso;
     }
 
-    public function listarDadosRelatorio($funcionario, $processo){
+
+    public function listarDadosRelatorio($funcionario, $processo, $tipo_data){
         
-        if($funcionario === "" && $processo === ""){
+        if($funcionario === "" && $processo === "" && $tipo_data === ""){
+
             $arrayRelatorioModel = 
                 $this->relatorioModel->consultarTodos();
         }else{
             $arrayRelatorioModel = 
                 $this->relatorioModel->consultarComFiltro(
-                    $funcionario, $processo);
+                    $funcionario, $processo, $tipo_data);
+
         }
         
 

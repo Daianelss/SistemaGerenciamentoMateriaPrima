@@ -7,6 +7,8 @@ class RelatorioView
     private RelatorioController $relatorioController;
     private $filtro_funcionario;
     private $filtro_processo;
+    private $filtro_tipo_data;
+
 
     function __construct()
     {        
@@ -21,6 +23,11 @@ class RelatorioView
         if(isset($_GET['movimentos'])){
             $this->filtro_processo = $_GET['movimentos'];
         }
+        
+        $this->filtro_tipo_data = "";
+        if(isset($_GET['datafiltro'])){
+            $this->filtro_tipo_data = $_GET['datafiltro'];
+        }
     }
 
     public function getRelatorioController()
@@ -32,6 +39,8 @@ class RelatorioView
     {
         return $this->relatorioController->listarDadosRelatorio(
             $this->filtro_funcionario,
-            $this->filtro_processo);
+            $this->filtro_processo,
+            $this->filtro_tipo_data);
+
     }
 }
