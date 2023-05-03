@@ -23,6 +23,7 @@
                 <button class="btn btn-secondary ms-3 mt-2" onclick="window.location.href='http://localhost/src/view/cadastro-movimento.php'" style="margin-right: 10px;">Movimentos</button>
                 <button class="btn btn-secondary ms-3 mt-2" onclick="window.location.href='http://localhost/src/view/cadastro-funcionario.php'" style="margin-right: 10px;">Funcionários</button>
                 <button class="btn btn-secondary ms-3 mt-2" onclick="window.location.href='http://localhost/src/view/cadastro-materia-prima.php'" style="margin-right: 10px;">Matéria Prima</button>
+                <button class="btn btn-secondary ms-3 mt-2" onclick="window.location.href='http://localhost/src/view/cadastro-processo.php'" style="margin-right: 10px;">Cadastro Processo</button>
             </div>
 
         </div>
