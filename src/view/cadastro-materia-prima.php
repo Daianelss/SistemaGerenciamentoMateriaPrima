@@ -42,7 +42,7 @@ $view = new CadastroMateriaPrimaView();
 
     <form method="post" name="formTabela" action="cadastro-materia-prima.php">
 
-        <table class='table table-secondary table-bordered container table-striped table-houver mt-5 mb-5'>
+        <table class='table table-secondary table-bordered container table-striped table-hover mt-5 mb-5'>
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
