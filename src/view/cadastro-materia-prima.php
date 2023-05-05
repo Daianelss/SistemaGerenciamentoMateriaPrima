@@ -10,36 +10,7 @@ $view = new CadastroMateriaPrimaView();
     <meta charset="UTF-8" />
     <title>Materia Prima</title>
     <?php include '../view/bootstrap_head.php'; ?>
-    <style>
-        .bg-secondary {
-            background-color: rgb(118, 30, 72, 0.57) !important;
-        }
-
-        body {
-            background-color: rgb(217, 217, 217, 0.4) !important;
-        }
-
-        .btn {
-            color: black !important;
-            background-color: #EDD8FD !important;
-            border: 1px solid #000000 !important;
-            border-radius: 10px !important;
-            box-sizing: border-box !important;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
-        }
-
-        input {
-            border-radius: 8px !important;
-            box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1) !important;
-        }
-
-        #rolagem {
-            overflow: auto !important;
-            width: 1320px !important;
-            height: 300px !important;
-            margin: auto !important;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <header class="bg-secondary p-3">
     <h1 class="text-center mb-5 text-black">Cadastro de tipo de Matéria Prima</h1>

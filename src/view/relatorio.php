@@ -21,41 +21,7 @@ $relatorios = $view->consultarDadosRelatorio();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Relatorio</title>
   <?php include '../view/bootstrap_head.php'; ?>
-  <style>
-    .bg-secondary {
-      background-color: rgb(118, 30, 72, 0.57) !important;
-    }
-
-    body {
-      background-color: rgb(217, 217, 217, 0.4) !important;
-    }
-
-    .btn {
-      color: black !important;
-      background-color: #EDD8FD !important;
-      border: 1px solid #000000 !important;
-      border-radius: 10px !important;
-      box-sizing: border-box !important;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
-    }
-
-    select {
-      border-radius: 8px !important;
-      box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
-    }
-
-    input {
-      border-radius: 8px !important;
-      box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
-    }
-
-    #rolagem {
-      overflow: auto !important;
-      width: 1320px !important;
-      height: 350px !important;
-      margin: auto !important;
-    }
-  </style>
+  <link rel="stylesheet" href="../css/main.css">
 </head>
 <header class="bg-secondary p-3">
   <h1 class="text-center mb-5 text-black">Sistema de Gerenciamento de Materiais</h1>
