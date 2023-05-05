@@ -10,14 +10,44 @@ $view = new CadastroMovimentoView();
     <meta charset="UTF-8" />
     <title>Materia Prima</title>
     <?php include '../view/bootstrap_head.php'; ?>
+    <style>
+        .bg-secondary {
+            background-color: rgb(118, 30, 72, 0.57) !important;
+        }
+
+        body {
+            background-color: rgb(217, 217, 217, 0.4) !important;
+        }
+
+        .btn {
+            color: black !important;
+            background-color: #EDD8FD !important;
+            border: 1px solid #000000 !important;
+            border-radius: 10px !important;
+            box-sizing: border-box !important;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+        }
+
+        input {
+            border-radius: 8px !important;
+            box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
+        }
+
+        #rolagem {
+            overflow: auto !important;
+            width: 1320px !important;
+            height: 350px !important;
+            margin:auto !important;
+        }
+    </style>
 </head>
 <header class="bg-secondary p-3">
-    <h1 class="text-center mb-5 text-white">Cadastro de tipo de Matéria Prima</h1>
+    <h1 class="text-center mb-5 text-black">Cadastro de tipo de Matéria Prima</h1>
 </header>
 
 <body>
 
-    <div class="container border border-dark mt-5">
+    <div class="container border border-dark mt-5 mb-5">
         <form method="post" name="formSalvarEditar" action="cadastro-movimento.php">
             <div class="d-flex flex-row mb-3 mt-5">
 
@@ -28,7 +58,7 @@ $view = new CadastroMovimentoView();
                 <input class="ms-2 me-3" type="text" id="processoMovimento" name="processoMovimento" required><br>
             </div>
             <div class="d-flex flex-row mb-3">
-                <label>Operacao</label><br>
+                <label>Operação</label><br>
                 <input class="ms-2 me-3" type="radio" id="entrada" name="tipoOperacaoMovimento" value="1">
                 <label for="entrada">Entrada</label><br>
 
@@ -61,21 +91,22 @@ $view = new CadastroMovimentoView();
 
     <?= $view->dispararAcao() ?>
     <form method="post" name="formTabela" action="cadastro-movimento.php">
-
-        <table class='table table-secondary table-bordered container table-striped table-hover mt-5'>
-            <tr>
-                <th>ID</th>
-                <th>Funcionario</th>
-                <th>Processo</th>
-                <th>Tipo Operação</th>
-                <th>Data</th>
-                <th>Peso</th>
-                <th>Descrição</th>
-                <th>Edição</th>
-                <th>Status</th>
-            </tr>
-            <?= $view->renderizarTabela() ?>
-        </table>
+        <div id="rolagem">
+            <table class='table table-secondary table-bordered table-striped table-hover'>
+                <tr>
+                    <th>ID</th>
+                    <th>Funcionario</th>
+                    <th>Processo</th>
+                    <th>Tipo Operação</th>
+                    <th>Data</th>
+                    <th>Peso</th>
+                    <th>Descrição</th>
+                    <th>Edição</th>
+                    <th>Status</th>
+                </tr>
+                <?= $view->renderizarTabela() ?>
+            </table>
+        </div>
     </form>
 
     <script>
