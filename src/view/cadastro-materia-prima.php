@@ -10,9 +10,10 @@ $view = new CadastroMateriaPrimaView();
     <meta charset="UTF-8" />
     <title>Materia Prima</title>
     <?php include '../view/bootstrap_head.php'; ?>
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <header class="bg-secondary p-3">
-    <h1 class="text-center mb-5 text-white">Cadastro de tipo de Matéria Prima</h1>
+    <h1 class="text-center mb-5 text-black">Cadastro de tipo de Matéria Prima</h1>
 </header>
 
 <body>
@@ -41,17 +42,18 @@ $view = new CadastroMateriaPrimaView();
 
 
     <form method="post" name="formTabela" action="cadastro-materia-prima.php">
-
-        <table class='table table-secondary table-bordered container table-striped table-houver mt-5 mb-5'>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Edição</th>
-                <th>Status</th>
-            </tr>
-            <?= $view->renderizarTabela() ?>
-        </table>
+        <div id="rolagem">
+            <table class='table table-secondary table-bordered table-striped table-hover'>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Edição</th>
+                    <th>Status</th>
+                </tr>
+                <?= $view->renderizarTabela() ?>
+            </table>
+        </div>
     </form>
     </div>
     <script>

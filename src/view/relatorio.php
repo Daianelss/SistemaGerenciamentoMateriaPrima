@@ -21,9 +21,10 @@ $relatorios = $view->consultarDadosRelatorio();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Relatorio</title>
   <?php include '../view/bootstrap_head.php'; ?>
+  <link rel="stylesheet" href="../css/main.css">
 </head>
 <header class="bg-secondary p-3">
-  <h1 class="text-center mb-5 text-white">Sistema de Gerenciamento de Materiais</h1>
+  <h1 class="text-center mb-5 text-black">Sistema de Gerenciamento de Materiais</h1>
 </header>
 
 <body>
@@ -44,17 +45,17 @@ $relatorios = $view->consultarDadosRelatorio();
             ?>
           </select>
 
-      <select class="form-row, border-secondary border-2 d-print-none" name="movimentos">
-        <option value=''>Todos</option>
-        <?php
-        if (count($movimentos) > 0) {
-          foreach ($movimentos as $movimento) {
-            $id   = $movimento['TIPR_ID'];
-            $name = $movimento['TIPR_NOME'];
-            echo "<option value='$id'>$name</option>";
-          }
-        }
-        ?>
+          <select class="form-row, border-secondary border-2 d-print-none" name="movimentos">
+            <option value=''>Movimentos</option>
+            <?php
+            if (count($movimentos) > 0) {
+              foreach ($movimentos as $movimento) {
+                $id   = $movimento['TIPR_ID'];
+                $name = $movimento['TIPR_NOME'];
+                echo "<option value='$id'>$name</option>";
+              }
+            }
+            ?>
           </select>
 
           <input name="datafiltro" class="form-row d-print-none me-3" type="date" min="1900-01-01" max="2030-01-01">
@@ -63,40 +64,41 @@ $relatorios = $view->consultarDadosRelatorio();
         </form>
       </div>
     </div>
-    <table class="table table-secondary table-bordered container table-striped table-houver mt-5 mb-5 ">
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>Peso Entrada</th>
-          <th>Descrição</th>
-          <th>Saída</th>
-          <th>Quebra</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($relatorios as $relatorio) : ?>
-
-
+    <div id="rolagem">
+      <table class="table table-secondary table-bordered table-striped table-hover">
+        <thead>
           <tr>
-            <td>
-              <?= $relatorio["MOVI_DATE"] ?>
-            </td>
-            <td>
-              <?= $relatorio["MOVI_PESO"] ?>
-            </td>
-            <td>
-              <?= $relatorio["MOVI_DESC"] ?>
-            </td>
-            <td>
-              <?= $relatorio["MOVI_PESO"] ?>
-            </td>
+            <th>Data</th>
+            <th>Peso Entrada</th>
+            <th>Descrição</th>
+            <th>Saída</th>
+            <th>Quebra</th>
           </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($relatorios as $relatorio) : ?>
 
-        <?php endforeach; ?>
-      </tbody>
 
-    </table>
+            <tr>
+              <td>
+                <?= $relatorio["MOVI_DATE"] ?>
+              </td>
+              <td>
+                <?= $relatorio["MOVI_PESO"] ?>
+              </td>
+              <td>
+                <?= $relatorio["MOVI_DESC"] ?>
+              </td>
+              <td>
+                <?= $relatorio["MOVI_PESO"] ?>
+              </td>
+            </tr>
 
+          <?php endforeach; ?>
+        </tbody>
+
+      </table>
+    </div>
     <div class="container text-center">
       <div class="row">
         <div class="col">
@@ -122,7 +124,7 @@ $relatorios = $view->consultarDadosRelatorio();
   ?>
 
   <footer class="bg-secondary p-3 container-fluid fixed-bottom ">
-    <h6 class="text-white mt-5 text-center">Todos os Direitos Reservados © 2023</h6>
+    <h6 class="text-black mt-5 text-center">Todos os Direitos Reservados © 2023</h6>
   </footer>
 </body>
 
