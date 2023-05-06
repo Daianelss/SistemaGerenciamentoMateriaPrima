@@ -1,6 +1,8 @@
 <?php
 require 'CadastroMovimentoView.php';
 $view = new CadastroMovimentoView();
+$funcionarios = $view->getFuncionarios();
+$processos = $view->getProcessos();
 ?>
 
 <!doctype html>
@@ -22,6 +24,29 @@ $view = new CadastroMovimentoView();
         <form method="post" name="formSalvarEditar" action="cadastro-movimento.php">
             <div class="d-flex flex-row mb-3 mt-5">
 
+            <select class="form-row border-secondary border-2 d-print-none me-3" name="funcionarios" required>
+            <?php
+            if (count($funcionarios) > 0) {
+              foreach ($funcionarios as $funcionario) {
+                $id   = $funcionario['FUNC_ID'];
+                $name = $funcionario['FUNC_NOME'];
+                echo "<option value='$id'>$name</option>";
+              }
+            }
+            ?>
+          </select>
+
+          <select class="form-row, border-secondary border-2 d-print-none" name="movimentos" required>
+            <?php
+            if (count($processos) > 0) {
+              foreach ($processos as $processo) {
+                $id   = $processo['TIPR_ID'];
+                $name = $processo['TIPR_NOME'];
+                echo "<option value='$id'>$name</option>";
+              }
+            }
+            ?>
+          </select>
                 <label for="funcionarioMovimento">Funcionario:</label>
                 <input class="ms-2 me-3" type="text" id="funcionarioMovimento" name="funcionarioMovimento" required><br>
 
@@ -43,7 +68,7 @@ $view = new CadastroMovimentoView();
                 </div>
                 <div>
                     <label for="pesoMovimento">Peso:</label>
-                    <input class="ms-2 me-3" type="number" id="pesoMovimento" name="pesoMovimento" required><br>
+                    <input class="ms-2 me-3" type="text" id="pesoMovimento" name="pesoMovimento" required><br>
                 </div>
                 <div>
                     <label for="descMovimento">Descrição:</label>
@@ -52,14 +77,14 @@ $view = new CadastroMovimentoView();
                 <input type="hidden" id="idMovimento" name="idMovimento"><br>
             </div>
             <div class="mb-4">
-
-                <input class="btn btn-secondary ms-3 mt-2" type="submit" value="Salvar" name="salvar">
+                
+                <input class="btn btn-secondary ms-3 mt-2" onclick="return confirm('Confirmar?')" type="submit" value="Salvar" name="salvar">
                 <button class="btn btn-secondary ms-3 mt-2" onclick="window.location.href='http://localhost/src/pages/home/index.php'">Voltar</button>
-
+                
             </div>
         </form>
     </div>
-
+    
     <?= $view->dispararAcao() ?>
     <form method="post" name="formTabela" action="cadastro-movimento.php">
         <div id="rolagem">
@@ -73,7 +98,7 @@ $view = new CadastroMovimentoView();
                     <th>Peso</th>
                     <th>Descrição</th>
                     <th>Edição</th>
-                    <th>Status</th>
+                    <th>Deletar</th>
                 </tr>
                 <?= $view->renderizarTabela() ?>
             </table>
@@ -81,6 +106,12 @@ $view = new CadastroMovimentoView();
     </form>
 
     <script>
+        $(document).ready(function() {
+            $("#pesoMovimento").mask('##0.00', {
+                reverse: true
+            });
+        });
+
         function preencherCampos(evento) {
             let botaoEditar = evento.target;
 
@@ -92,13 +123,13 @@ $view = new CadastroMovimentoView();
             document.querySelector('#processoMovimento').value = tdProcessoMovimento.textContent;
 
             let tdTipoOperacaoMovimento = document.querySelector(`td[name="tdTipoOperacaoMovimento"][id="${botaoEditar.value}"]`);
-            document.querySelector('#tipoOperacaoMovimento').checked = tdDataMovimento.textContent;
+            document.querySelector(`[name="tipoOperacaoMovimento"][type="radio"][value="${tdTipoOperacaoMovimento.textContent}"]`).checked = true;
 
             let tdDataMovimento = document.querySelector(`td[name="tdDataMovimento"][id="${botaoEditar.value}"]`);
             document.querySelector('#dataMovimento').value = tdDataMovimento.textContent;
 
             let tdPesoMovimento = document.querySelector(`td[name="tdPesoMovimento"][id="${botaoEditar.value}"]`);
-            document.querySelector('#pesoMovimento').value = parseInt(tdPesoMovimento.textContent);
+            document.querySelector('#pesoMovimento').value = tdPesoMovimento.textContent;
 
             let tdDescMovimento = document.querySelector(`td[name="tdDescMovimento"][id="${botaoEditar.value}"]`);
             document.querySelector('#descMovimento').value = tdDescMovimento.textContent;
@@ -106,6 +137,7 @@ $view = new CadastroMovimentoView();
             document.querySelector('#idMovimento').setAttribute('value', botaoEditar.value);
 
         }
+
     </script>
 
     <?php

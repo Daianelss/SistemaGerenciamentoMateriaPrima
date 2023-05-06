@@ -6,8 +6,8 @@ require "RelatorioView.php";
 
 $view = new RelatorioView();
 
-$funcionarios = $view->getRelatorioController()->listarFuncionarios();
-$movimentos = $view->getRelatorioController()->listarProcesso();
+$funcionarios = $view->getFuncionarios();
+$processos = $view->getProcessos();
 $relatorios = $view->consultarDadosRelatorio();
 
 
@@ -46,12 +46,12 @@ $relatorios = $view->consultarDadosRelatorio();
           </select>
 
           <select class="form-row, border-secondary border-2 d-print-none" name="movimentos">
-            <option value=''>Movimentos</option>
+            <option value=''>Todos</option>
             <?php
-            if (count($movimentos) > 0) {
-              foreach ($movimentos as $movimento) {
-                $id   = $movimento['TIPR_ID'];
-                $name = $movimento['TIPR_NOME'];
+            if (count($processos) > 0) {
+              foreach ($processos as $processo) {
+                $id   = $processo['TIPR_ID'];
+                $name = $processo['TIPR_NOME'];
                 echo "<option value='$id'>$name</option>";
               }
             }

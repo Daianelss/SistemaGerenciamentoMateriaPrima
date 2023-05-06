@@ -25,6 +25,14 @@ class MovimentoModel extends BaseModel
         $this->editar($campos, $valores, $id);
     }
 
+    public function deletarMovimento($id)
+    {
+        $campos = array("MOVI_id");
+        $valores = array($id);
+        $this->deletar($id);
+    }
+
+
     public function cadastrarMovimento()
     {
         $campos = array("MOVI_DATE", "MOVI_PESO", "MOVI_DESC", "MOVI_TIPO", "MOVI_TIPR_ID", "MOVI_FUNC_ID");

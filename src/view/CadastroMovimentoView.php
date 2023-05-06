@@ -15,6 +15,7 @@ class CadastroMovimentoView
         $this->anularVaziosPost();
 
         $salvar = !isset($_POST["salvar"]) ? null : $_POST["salvar"];
+        $idDeletar = !isset($_POST["idDeletar"]) ? null : $_POST["idDeletar"];
         $funcionarioMovimento = !isset($_POST["funcionarioMovimento"]) ? null : $_POST["funcionarioMovimento"];
         $processoMovimento = !isset($_POST["processoMovimento"]) ? null : $_POST["processoMovimento"];
         $tipoOperacaoMovimento = !isset($_POST["tipoOperacaoMovimento"]) ? null : $_POST["tipoOperacaoMovimento"];
@@ -27,9 +28,11 @@ class CadastroMovimentoView
         $idMovimento = !isset($_POST["idMovimento"]) ? null : $_POST["idMovimento"];
 
         if ($salvar != null && $idMovimento != null) {
-            $this->movimentoController->editarMovimento($funcionarioMovimento, $processoMovimento, $tipoOperacaoMovimento, $dataMovimento, $pesoMovimento,$descMovimento,$idMovimento);
+            $this->movimentoController->editarMovimento($funcionarioMovimento, $processoMovimento, $tipoOperacaoMovimento, $dataMovimento, $pesoMovimento, $descMovimento, $idMovimento);
         } else if ($salvar != null) {
-            $this->movimentoController->cadastrarMovimento($funcionarioMovimento, $processoMovimento, $tipoOperacaoMovimento, $dataMovimento, $pesoMovimento,$descMovimento);
+            $this->movimentoController->cadastrarMovimento($funcionarioMovimento, $processoMovimento, $tipoOperacaoMovimento, $dataMovimento, $pesoMovimento, $descMovimento);
+        } else if ($idDeletar != null) {
+            $this->movimentoController->deletarMovimento($idDeletar);
         }
 
         if ($idMovimentoPrimaAtivo != null) {
@@ -39,7 +42,8 @@ class CadastroMovimentoView
         } else {
             unset($_POST);
             return;
-        }unset($_POST);
+        }
+        unset($_POST);
 
         header("Location: ../view/cadastro-movimento.php");
     }
@@ -63,10 +67,19 @@ class CadastroMovimentoView
             echo "<td name='tdPesoMovimento' id='" . $row["MOVI_ID"] . "'>" . $row["MOVI_PESO"] . "</td>";
             echo "<td name='tdDescMovimento' id='" . $row["MOVI_ID"] . "'>" . $row["MOVI_DESC"] . "</td>";
 
-
-
             echo '<td> <button type="button" id="editar" onclick="preencherCampos(event)" name="idMovimentoEditar" value="' . $row["MOVI_ID"] . '" class="btn-editar btn btn-primary">Editar</button>';
+            echo '<td> <button type="submit" id="deletar" name="idDeletar" value="' . $row["MOVI_ID"] . '" class="btn-deletar btn btn-primary">Deletar</button>';
         }
+    }
+
+    public function getFuncionarios()
+    {
+        return $this->movimentoController->listarFuncionarios();
+    }
+
+    public function getProcessos()
+    {
+        return $this->movimentoController->listarProcessos();
     }
 
     public function anularVaziosPost()

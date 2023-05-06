@@ -30,9 +30,14 @@ class RelatorioView
         }
     }
 
-    public function getRelatorioController()
+    public function getFuncionarios()
     {
-        return $this->relatorioController;
+        return $this->relatorioController->listarFuncionarios();
+    }
+
+    public function getProcessos()
+    {
+        return $this->relatorioController->listarProcessos();
     }
 
     public function consultarDadosRelatorio()
@@ -41,6 +46,5 @@ class RelatorioView
             $this->filtro_funcionario,
             $this->filtro_processo,
             $this->filtro_tipo_data);
-
     }
 }

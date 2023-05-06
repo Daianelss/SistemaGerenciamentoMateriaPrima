@@ -24,7 +24,7 @@ $view = new CadastroFuncionarioView();
             <label class="mt-5 me-3" for="funcionario">Funcionário:</label>
             <input type="text" id="nomeFuncionario" name="nomeFuncionario" required><br>
             <input type="hidden" id="idFuncionario" name="idFuncionario"><br>
-            <input class="btn btn-secondary ms-3 mt-2" type="submit" value="Salvar" name="salvar">
+            <input class="btn btn-secondary ms-3 mt-2" onclick="return confirm('Confirmar?')" type="submit" value="Salvar" name="salvar">
             <button class="btn btn-secondary ms-3 mt-2" onclick="window.location.href='http://localhost/src/pages/home/index.php'">Voltar</button>
         </form>
     </div>

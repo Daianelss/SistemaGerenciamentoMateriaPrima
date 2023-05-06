@@ -42,6 +42,13 @@ abstract class BaseModel
         return $this->executarDml($sql);
     }
 
+    public function deletar($id)
+    {
+        $sql = "DELETE FROM $this->nomeTabela  WHERE $this->campoId = $id;";
+        return $this->executarDml($sql);
+    }
+
+
     public function desativar($id)
     {
         $sql = "UPDATE $this->nomeTabela SET $this->campoStatus = ('0') WHERE $this->campoId = $id;";
