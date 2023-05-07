@@ -1,4 +1,28 @@
-nha
+# Projeto Integradrador / Grupo 27 - SENAC SP (Segunda Entrega - Primeiro Semestre).
+<p><i> Integrantes do grupo 27:</i><br><br>
+1. Ana Luíza Costa Lima<br>
+2. Anderson Pedro de Alcântara<br>
+3. Daiane Lucena Silva<br>
+4. Laís Pereira dos Santos Araújo<br>
+5. Lucas da Silva Freire<br>
+6. Marcela de Jesus Santos<br>
+7. Natã de Souza Cooper</P><br>
+
+## Gerênciamento de Matéria Prima.
+<p> Este é um projeto que engloba um sistema com a função de gerir, toda a matéria prima utilizada por uma empresa familiar de pequeno porte. </p>
+
+  
+## Instalação do aplicativo!
+<p>Para instalar o sistema, você precisará dos seguintes recusrsos:</p>
+* [XAMPP](https://www.apachefriends.org/pt_br/index.html) <br>
+* [MySQL Workbanch](https://dev.mysql.com/downloads/workbench/) <br>
+* [Visual Studio Code](https://code.visualstudio.com/)<br>
+* [Git](https://git-scm.com/)<br>
+* [GitHub](https://github.com/) Ter uma conta na plataforma GitHub!<br><br>
+
+**NOTA:** Precisará de *usuário e senha* para usar o Workbanch.<br><br>
+
+<p>Após instalar os programas acima, siga os seguintes passos para clonar o repositório git:</p><br>
 
 
 
@@ -6,36 +30,8 @@ nha
 
 
 
+<!--
 
-# PIGerenciamentoMateriaPrima
-Esse é um projeto que engloba um pequeno sistema para gerenciamento de matéria prima de uma empresa de pequeno porte
-
-
-#<h1>Configuração para abrir o sistema</h1>
-
-<h2>Requisitos</h2>
-
-- Xampp = Para o PHP
-- Mysql Workbanch, ou PHPMyadmin. = Para o banco de dados.
-
-*******************
-
-<h4>NOTA: Caso use o PHPmyadmin, pode haver alguma divergencia ou algum passo diferente, caso não funcione o processo, tente procurar algo equivalente</h4>
-
-*******************
-
-Se você tiver o Workbanch instalado, precisara do usuario e senha utilizados.
-
-*****************************
-
-<h4>NÃO TEM COM RECUPERAR A SENHA</h4>
-
-***************************** 
-
-se esqueceu. Terá que desinstalar, e instalar novamente.
-
-Caso tenha instalado o Xampp completo, ele já vem com o PHPmyadmin.
-Não sei qual a configuração do PHPmyadmin, Acredito que ele vem com o Usuario ROOT, e senha vazia por padrão. então será necessário testar.
 
 Após a instalação dos programas.
 Você irá clonar o repositorio git,
@@ -188,3 +184,5 @@ CREATE TABLE IF NOT EXISTS `gerenciamentomateriaprima`.`MATERIA_PRIMA` (
     ON UPDATE NO ACTION
 );
 ```
+
+-->
