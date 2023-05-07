@@ -14,17 +14,24 @@
   
 ## Instalação do aplicativo!
 <p>Para instalar o sistema, você precisará dos seguintes recusrsos:</p>
-* [XAMPP](https://www.apachefriends.org/pt_br/index.html) <br>
-* [MySQL Workbanch](https://dev.mysql.com/downloads/workbench/) <br>
+* [XAMPP](https://www.apachefriends.org/pt_br/index.html)<br>
+* [MySQL Workbanch](https://dev.mysql.com/downloads/workbench/)<br>
 * [Visual Studio Code](https://code.visualstudio.com/)<br>
 * [Git](https://git-scm.com/)<br>
 * [GitHub](https://github.com/) Ter uma conta na plataforma GitHub!<br><br>
 
 **NOTA:** Precisará de *usuário e senha* para usar o Workbanch.<br><br>
 
-<p>Após instalar os programas acima, siga os seguintes passos para clonar o repositório git:</p><br>
-
-
+<p>Após instalar os programas acima, e ter uma conta no GitHub, siga os seguintes passos para clonar o repositório git:</p><br>
+* Abra o terminal do git, clique em git bash, na tela seguinte digite:<br>
+```<br>
+* $ cd C:/xampp/htdocs<br>
+* git clone https://github.com/Daianelss/SistemaGerenciamentoMateriaPrima.git<br>
+* $ cd SistemaGerenciamentoMateriaPrima<br>
+* $ find -maxdepht 1 -mindepth 1 -exec mv -t .. {} +<br>
+* $ cd ..<br>
+* $ git pull origin main<br>
+```
 
 
 
@@ -33,58 +40,6 @@
 <!--
 
 
-Após a instalação dos programas.
-Você irá clonar o repositorio git,
-utilizando os seguintes passos
-
-<h3>Abra o terminal do git em qualquer lugar.</h3>
-
-***********************
-
-<h4>NOTA: Esse comando só funciona caso tenha feito a instalação padrão do XAMPP</h4>
-
-***********************
-
-<h3>Entra na pasta do Xampp.</h3>
-
-```
-$ cd C:/xampp/htdocs
-```
-
-<h3>Clona o repositorio, ou seja, realiza o dowload dos arquivos.</h3>
-
-```
-$  git clone https://github.com/Daianelss/SistemaGerenciamentoMateriaPrima.git
-```
-
-<h3>Entra na pasta criada</h3>
-
-```
-$ cd SistemaGerenciamentoMateriaPrima
-```
-
-<h3>Move todos os arquivos de dentro da pasta, para fora.</h3>
-
-```
-$ find -maxdepth 1 -mindepth 1 -exec mv -t .. {} +
-```
-
-<h3>Volta para a pasta anterior</h3>
-
-```
-$ cd ..
-```
-
-<h3>Apaga a pasta desnecessária</h3>
-
-```
-$ rm -r PIGerenciamentoMateriaPrima/
-```
-
-Caso já tenha clonado, apenas atualize o repositorio utilizando
-
-```
-$ git pull origin main
 ```
 
 Após está com o repositorio baixado, e atualizado.
