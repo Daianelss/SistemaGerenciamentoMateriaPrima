@@ -32,35 +32,12 @@
 * $ cd ..<br>
 * $ git pull origin main<br>
 ```
-
-
-
-
-
-<!--
-
-
-```
-
-Após está com o repositorio baixado, e atualizado.
-
-Entre no seguinte caminho
-
-```
-C:\xampp\htdocs\src\config
-```
-
-renomeie o arquivo 
-
-```
-_Conexao.php
-```
-
-para 
-
-```
-Conexao.php
-```
+<p>Agora você já estará com o repositório em sua máquina e atualizado.<br>
+Então digite:<br></p>
+```<br>
+C:\xampp\htdocs\src\config<br>
+```<br>
+Renomeie o arquivo '_Conexao.php' para 'conexao.php'<br>
 
 Abra o arquivo e preencha com as configurações do seu servidor mysql
 
@@ -139,5 +116,3 @@ CREATE TABLE IF NOT EXISTS `gerenciamentomateriaprima`.`MATERIA_PRIMA` (
     ON UPDATE NO ACTION
 );
 ```
-
--->
