@@ -67,7 +67,7 @@ class CadastroMovimentoView
             echo "<tr>";
             echo "<td>" . $row["MOVI_ID"] . "</td>";
             echo "<td name='tdFuncionarioMovimento' data-idFuncionario='" . $row["MOVI_FUNC_ID"] . "' id='" . $row["MOVI_ID"] . "'>" . $row["FUNC_NOME"] . "</td>";
-            echo "<td name='tdProcessoMovimento' data-idProcesso='" . $row["MOVI_TIPR_ID"] . "' id='" . $row["MOVI_ID"] . "'>" . $row["TIPR_NOME"] . "</td>";
+            echo "<td name='tdProcessoMovimento' data-idProcessoMovimento='" . $row["MOVI_TIPR_ID"] . "' id='" . $row["MOVI_ID"] . "'>" . $row["TIPR_NOME"] . "</td>";
             echo "<td name='tdTipoOperacaoMovimento' data-tipoOperacao='" . $row["MOVI_TIPO"] . "' id='" . $row["MOVI_ID"] . "'>" . $tipoOperacao . "</td>";
             echo "<td name='tdDataMovimento' id='" . $row["MOVI_ID"] . "'>" . $row["MOVI_DATE"] . "</td>";
             echo "<td name='tdPesoMovimento' id='" . $row["MOVI_ID"] . "'>" . $row["MOVI_PESO"] . "</td>";

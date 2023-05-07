@@ -113,24 +113,20 @@ $processos = $view->getProcessos();
         function preencherCampos(evento) {
             let botaoEditar = evento.target;
 
-
-
-
-
             let tdFuncionarioMovimento = document.querySelector(`td[name="tdFuncionarioMovimento"][id="${botaoEditar.value}"]`);
             let selectFuncionario = document.querySelector('select[name="funcionarioMovimento"]');
             var optionFuncionario = Array.from(selectFuncionario.options).find(elemento => elemento.value == tdFuncionarioMovimento.dataset.idfuncionario);
+            selectFuncionario.selectedIndex = optionFuncionario.index;
 
             // var optionFuncionario = Array.from(selectFuncionario.options).find(elemento => {
             //     if (elemento.value == tdFuncionarioMovimento.dataset.idfuncionario)
             //         return elemento;
             // });
 
-            selectFuncionario.selectedIndex = optionFuncionario.index;
-
-
             let tdProcessoMovimento = document.querySelector(`td[name="tdProcessoMovimento"][id="${botaoEditar.value}"]`);
-            document.querySelector('#processoMovimento').value = tdProcessoMovimento.textContent;
+            let selectProcessoMovimento = document.querySelector('select[name="processoMovimento"]');
+            var optionProcessoMovimento = Array.from(selectProcessoMovimento.options).find(elemento => elemento.value == tdProcessoMovimento.dataset.idprocessomovimento);
+            selectProcessoMovimento.selectedIndex = optionProcessoMovimento.index;
 
             let tdTipoOperacaoMovimento = document.querySelector(`td[name="tdTipoOperacaoMovimento"][id="${botaoEditar.value}"]`);
             document.querySelector(`[name="tipoOperacaoMovimento"][type="radio"][value="${tdTipoOperacaoMovimento.dataset.tipooperacao}"]`).checked = true;
