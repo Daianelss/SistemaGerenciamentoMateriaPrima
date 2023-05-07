@@ -25,7 +25,8 @@ $view = new CadastroFuncionarioView();
             <input type="text" id="nomeFuncionario" name="nomeFuncionario" required><br>
             <input type="hidden" id="idFuncionario" name="idFuncionario"><br>
             <input class="btn btn-secondary ms-3 mt-2" onclick="return confirm('Confirmar?')" type="submit" value="Salvar" name="salvar">
-            <button class="btn btn-secondary ms-3 mt-2" onclick="window.location.href='http://localhost/src/pages/home/index.php'">Voltar</button>
+            <a class="btn btn-secondary ms-3 mt-2" href="http://localhost/src/pages/home/index.php">Voltar</a>
+
         </form>
     </div>
     <?= $view->dispararAcao() ?>

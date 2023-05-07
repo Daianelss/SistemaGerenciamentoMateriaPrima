@@ -41,7 +41,8 @@ class MovimentoModel extends BaseModel
     }
 
     public function converterData($data){
-        //return "STR_TO_DATE('$data','%Y-%m-%d')";
         return $data;
     }
+
+
 }

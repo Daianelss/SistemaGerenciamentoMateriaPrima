@@ -26,7 +26,6 @@ class FuncionarioModel extends BaseModel{
         $this->inserir($campos, $valores);
     }
 
-
 }
 
 ?>

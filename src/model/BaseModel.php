@@ -30,9 +30,33 @@ abstract class BaseModel
         return $this->executarDql($sql);
     }
 
-    public function consultarTodos()
+    public function consultarTodos($filtro = "")
     {
-        $sql = "SELECT * FROM $this->nomeTabela";
+        $sql = "SELECT * FROM $this->nomeTabela 
+        WHERE 1 = 1";
+
+        if ($filtro != "")
+            $sql = $sql . " AND $filtro";
+
+        return $this->executarDql($sql);
+    }
+
+    /**
+     * @param $joins deve ser um array associativo com os seguintes campos:
+     * array(
+     * [
+     *      'campoTabela' => "CAMPO_ID",
+     *      'campoReferencia' => "CAMPO_REFERENCIA_ID",
+     *      'nomeTabela' => "TABELA"
+     * ])
+     */
+    public function consultarTodosInnerJoin($joins, $filtro = "")
+    {
+        $sql = "SELECT * FROM $this->nomeTabela \n" . $this->juntarInnerJoins($joins) . "\n WHERE 1 = 1";
+
+        if ($filtro != "")
+            $sql = $sql . " AND $filtro";
+
         return $this->executarDql($sql);
     }
 
@@ -90,7 +114,7 @@ abstract class BaseModel
 
     private function fecharConexao()
     {
-            mysqli_close($this->conexao);
+        mysqli_close($this->conexao);
     }
 
     private function juntarCampos($valores)
@@ -101,7 +125,7 @@ abstract class BaseModel
     private function juntarValores($valores)
     {
         $resultado = "'" . implode("','", $valores) . "'";
-            return $resultado;
+        return $resultado;
     }
 
     private function juntarCamposEditar($campos, $valores)
@@ -112,6 +136,16 @@ abstract class BaseModel
                 $resultado = $resultado . $campos[$i] . " = '" . $valores[$i] . "',";
             else
                 $resultado = $resultado . $campos[$i] . " = '" . $valores[$i] . "'";
+        }
+
+        return $resultado;
+    }
+
+    private function juntarInnerJoins($joins)
+    {
+        $resultado = "";
+        for ($i = 0; $i < count($joins); $i++) {
+            $resultado = $resultado . " INNER JOIN " . $joins[$i]['nomeTabela'] . " ON " . $joins[$i]['campoTabela'] . " = " . $joins[$i]['campoReferencia'] . " \n";
         }
 
         return $resultado;

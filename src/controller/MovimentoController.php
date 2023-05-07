@@ -44,7 +44,20 @@ class MovimentoController
 
     public function listarMovimentos()
     {
-        $result = $this->movimentoModel->consultarTodos();
+        $joins = array(
+            [
+                'campoTabela' => "MOVI_FUNC_ID",
+                'campoReferencia' => "FUNC_ID",
+                'nomeTabela' => "FUNCIONARIO"
+            ],
+            [
+                'campoTabela' => "MOVI_TIPR_ID",
+                'campoReferencia' => "TIPR_ID",
+                'nomeTabela' => "TIPO_PROCESSO"
+            ] 
+        );
+
+        $result = $this->movimentoModel->consultarTodosInnerJoin($joins);
 
         if (mysqli_num_rows($result) > 0) {
             return $result;
@@ -55,7 +68,7 @@ class MovimentoController
 
     public function listarFuncionarios(){
         
-        $arrayFuncionario = $this->funcionarioModel->consultarTodos();
+        $arrayFuncionario = $this->funcionarioModel->consultarTodos("FUNC_STATUS = 1");
 
         if (mysqli_num_rows($arrayFuncionario) > 0) {
             return $arrayFuncionario->fetch_all(MYSQLI_ASSOC);

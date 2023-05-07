@@ -102,7 +102,7 @@ $relatorios = $view->consultarDadosRelatorio();
     <div class="container text-center">
       <div class="row">
         <div class="col">
-          <button class="btn btn-secondary d-print-none" onclick="window.location.href='http://localhost/src/pages/home/index.php'">Voltar</button>
+        <a class="btn btn-secondary ms-3 mt-2" href="http://localhost/src/pages/home/index.php">Voltar</a>
         </div>
         <div class="col">
           <script language="javascript">

@@ -58,15 +58,20 @@ class CadastroMovimentoView
         // Loop através dos dados da tabela
         while ($row = mysqli_fetch_assoc($result)) {
             // Adicionar uma linha para cada registro
+            $tipoOperacao = "";
+            if ($row['MOVI_TIPO'] == "1")
+                $tipoOperacao = "Entrada";
+            else
+                $tipoOperacao = "Saída";
+
             echo "<tr>";
             echo "<td>" . $row["MOVI_ID"] . "</td>";
-            echo "<td name='tdFuncionarioMovimento' id='" . $row["MOVI_ID"] . "'>" . $row["MOVI_FUNC_ID"] . "</td>";
-            echo "<td name='tdProcessoMovimento' id='" . $row["MOVI_ID"] . "'>" . $row["MOVI_TIPR_ID"] . "</td>";
-            echo "<td name='tdTipoOperacaoMovimento' id='" . $row["MOVI_ID"] . "'>" . $row["MOVI_TIPO"] . "</td>";
+            echo "<td name='tdFuncionarioMovimento' data-idFuncionario='" . $row["MOVI_FUNC_ID"] . "' id='" . $row["MOVI_ID"] . "'>" . $row["FUNC_NOME"] . "</td>";
+            echo "<td name='tdProcessoMovimento' data-idProcesso='" . $row["MOVI_TIPR_ID"] . "' id='" . $row["MOVI_ID"] . "'>" . $row["TIPR_NOME"] . "</td>";
+            echo "<td name='tdTipoOperacaoMovimento' data-tipoOperacao='" . $row["MOVI_TIPO"] . "' id='" . $row["MOVI_ID"] . "'>" . $tipoOperacao . "</td>";
             echo "<td name='tdDataMovimento' id='" . $row["MOVI_ID"] . "'>" . $row["MOVI_DATE"] . "</td>";
             echo "<td name='tdPesoMovimento' id='" . $row["MOVI_ID"] . "'>" . $row["MOVI_PESO"] . "</td>";
             echo "<td name='tdDescMovimento' id='" . $row["MOVI_ID"] . "'>" . $row["MOVI_DESC"] . "</td>";
-
             echo '<td> <button type="button" id="editar" onclick="preencherCampos(event)" name="idMovimentoEditar" value="' . $row["MOVI_ID"] . '" class="btn-editar btn btn-primary">Editar</button>';
             echo '<td> <button type="submit" id="deletar" name="idDeletar" value="' . $row["MOVI_ID"] . '" class="btn-deletar btn btn-primary">Deletar</button>';
         }

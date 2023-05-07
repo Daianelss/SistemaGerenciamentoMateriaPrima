@@ -24,34 +24,32 @@ $processos = $view->getProcessos();
         <form method="post" name="formSalvarEditar" action="cadastro-movimento.php">
             <div class="d-flex flex-row mb-3 mt-5">
 
-            <select class="form-row border-secondary border-2 d-print-none me-3" name="funcionarios" required>
-            <?php
-            if (count($funcionarios) > 0) {
-              foreach ($funcionarios as $funcionario) {
-                $id   = $funcionario['FUNC_ID'];
-                $name = $funcionario['FUNC_NOME'];
-                echo "<option value='$id'>$name</option>";
-              }
-            }
-            ?>
-          </select>
-
-          <select class="form-row, border-secondary border-2 d-print-none" name="movimentos" required>
-            <?php
-            if (count($processos) > 0) {
-              foreach ($processos as $processo) {
-                $id   = $processo['TIPR_ID'];
-                $name = $processo['TIPR_NOME'];
-                echo "<option value='$id'>$name</option>";
-              }
-            }
-            ?>
-          </select>
                 <label for="funcionarioMovimento">Funcionario:</label>
-                <input class="ms-2 me-3" type="text" id="funcionarioMovimento" name="funcionarioMovimento" required><br>
+                <select class="form-row border-secondary border-2 d-print-none me-3" name="funcionarioMovimento" required>
+                    <?php
+                    if (count($funcionarios) > 0) {
+                        foreach ($funcionarios as $funcionario) {
+                            $id   = $funcionario['FUNC_ID'];
+                            $name = $funcionario['FUNC_NOME'];
+                            echo "<option value='$id'>$name</option>";
+                        }
+                    }
+                    ?>
+                </select>
 
                 <label for="processoMovimento">Processo:</label>
-                <input class="ms-2 me-3" type="text" id="processoMovimento" name="processoMovimento" required><br>
+                <select class="form-row, border-secondary border-2 d-print-none" id="processoMovimento" name="processoMovimento" required>
+                    <?php
+                    if (count($processos) > 0) {
+                        foreach ($processos as $processo) {
+                            $id   = $processo['TIPR_ID'];
+                            $name = $processo['TIPR_NOME'];
+                            echo "<option value='$id'>$name</option>";
+                        }
+                    }
+                    ?>
+                </select>
+
             </div>
             <div class="d-flex flex-row mb-3">
                 <label>Operação</label><br>
@@ -77,14 +75,14 @@ $processos = $view->getProcessos();
                 <input type="hidden" id="idMovimento" name="idMovimento"><br>
             </div>
             <div class="mb-4">
-                
+
                 <input class="btn btn-secondary ms-3 mt-2" onclick="return confirm('Confirmar?')" type="submit" value="Salvar" name="salvar">
-                <button class="btn btn-secondary ms-3 mt-2" onclick="window.location.href='http://localhost/src/pages/home/index.php'">Voltar</button>
-                
+                <a class="btn btn-secondary ms-3 mt-2" href="http://localhost/src/pages/home/index.php">Voltar</a>
+
             </div>
         </form>
     </div>
-    
+
     <?= $view->dispararAcao() ?>
     <form method="post" name="formTabela" action="cadastro-movimento.php">
         <div id="rolagem">
@@ -116,14 +114,26 @@ $processos = $view->getProcessos();
             let botaoEditar = evento.target;
 
 
+
+
+
             let tdFuncionarioMovimento = document.querySelector(`td[name="tdFuncionarioMovimento"][id="${botaoEditar.value}"]`);
-            document.querySelector('#funcionarioMovimento').value = tdFuncionarioMovimento.textContent;
+            let selectFuncionario = document.querySelector('select[name="funcionarioMovimento"]');
+            var optionFuncionario = Array.from(selectFuncionario.options).find(elemento => elemento.value == tdFuncionarioMovimento.dataset.idfuncionario);
+
+            // var optionFuncionario = Array.from(selectFuncionario.options).find(elemento => {
+            //     if (elemento.value == tdFuncionarioMovimento.dataset.idfuncionario)
+            //         return elemento;
+            // });
+
+            selectFuncionario.selectedIndex = optionFuncionario.index;
+
 
             let tdProcessoMovimento = document.querySelector(`td[name="tdProcessoMovimento"][id="${botaoEditar.value}"]`);
             document.querySelector('#processoMovimento').value = tdProcessoMovimento.textContent;
 
             let tdTipoOperacaoMovimento = document.querySelector(`td[name="tdTipoOperacaoMovimento"][id="${botaoEditar.value}"]`);
-            document.querySelector(`[name="tipoOperacaoMovimento"][type="radio"][value="${tdTipoOperacaoMovimento.textContent}"]`).checked = true;
+            document.querySelector(`[name="tipoOperacaoMovimento"][type="radio"][value="${tdTipoOperacaoMovimento.dataset.tipooperacao}"]`).checked = true;
 
             let tdDataMovimento = document.querySelector(`td[name="tdDataMovimento"][id="${botaoEditar.value}"]`);
             document.querySelector('#dataMovimento').value = tdDataMovimento.textContent;
@@ -137,7 +147,6 @@ $processos = $view->getProcessos();
             document.querySelector('#idMovimento').setAttribute('value', botaoEditar.value);
 
         }
-
     </script>
 
     <?php
