@@ -5,13 +5,13 @@ include "../model/RelatorioModel.php";
 class RelatorioController
 {
     private FuncionarioModel $funcionarioModel;
-    private ProcessoModel $tipoMovimentoModel;
+    private ProcessoModel $tipoProcesso;
     private RelatorioModel $relatorioModel;
     
     function __construct()
     {
         $this->funcionarioModel = new FuncionarioModel();
-        $this->tipoMovimentoModel = new ProcessoModel();
+        $this->tipoProcesso = new ProcessoModel();
         $this->relatorioModel = new RelatorioModel();
     }
 
@@ -28,9 +28,9 @@ class RelatorioController
         return $arrayFuncionario;
     }
 
-    public function listarProcesso(){
+    public function listarProcessos(){
         
-        $arrayProcesso = $this->tipoMovimentoModel->consultarTodos();
+        $arrayProcesso = $this->tipoProcesso->consultarTodos();
 
         if (mysqli_num_rows($arrayProcesso) > 0) {
             return $arrayProcesso->fetch_all(MYSQLI_ASSOC);

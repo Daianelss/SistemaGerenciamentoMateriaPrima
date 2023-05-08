@@ -29,8 +29,9 @@ $view = new CadastroProcessoView();
                 </div>
             </div>
             <div class="d-flex justify-content-left mt-5 mb-3">
-                <input class="btn btn-secondary ms-3 mt-2" type="submit" value="Salvar" name="salvar">
-                <button class="btn btn-secondary ms-3 mt-2" onclick="window.location.href='http://localhost/src/pages/home/index.php'">Voltar</button>
+                <input class="btn btn-secondary ms-3 mt-2" onclick="return confirm('Confirmar?')" type="submit" value="Salvar" name="salvar">
+                <a class="btn btn-secondary ms-3 mt-2" href="http://localhost/src/pages/home/index.php">Voltar</a>
+
             </div>
         </form>
     </div>

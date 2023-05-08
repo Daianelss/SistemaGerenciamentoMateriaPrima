@@ -54,9 +54,9 @@ class CadastroFuncionarioView
             echo '<td> <button type="button" id="editar" onclick="preencherCampos(event)" name="idFuncionarioEditar" value="' . $row["FUNC_ID"] . '" class="btn-editar btn btn-primary">Editar</button>';
 
             if ($row["FUNC_STATUS"] == "1")
-                echo '<td> <button type="submit" name="idFuncionarioAtivo" class="btn btn-status btn-success" value="' . $row["FUNC_ID"] . '">Ativado</button>';
+            echo '<td><button type="submit" onclick="return confirm(\'Inativar?\')" name="idFuncionarioAtivo" class="btn btn-status btn-success" value="' . $row["FUNC_ID"] . '">Ativado</button></td>';
             else
-                echo '<td> <button type="submit" name="idFuncionarioInativo" class="btn btn-status btn-danger" value="' . $row["FUNC_ID"] . '">Inativo</button>';
+                echo '<td> <button type="submit" onclick="return confirm(\'Ativar?\')" name="idFuncionarioInativo" class="btn btn-status btn-danger" value="' . $row["FUNC_ID"] . '">Inativo</button>';
             echo "</tr>";
         }
     }

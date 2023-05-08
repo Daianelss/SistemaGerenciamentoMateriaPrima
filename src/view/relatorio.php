@@ -6,8 +6,8 @@ require "RelatorioView.php";
 
 $view = new RelatorioView();
 
-$funcionarios = $view->getRelatorioController()->listarFuncionarios();
-$movimentos = $view->getRelatorioController()->listarProcesso();
+$funcionarios = $view->getFuncionarios();
+$processos = $view->getProcessos();
 $relatorios = $view->consultarDadosRelatorio();
 
 
@@ -46,12 +46,21 @@ $relatorios = $view->consultarDadosRelatorio();
           </select>
 
           <select class="form-row, border-secondary border-2 d-print-none" name="movimentos">
+<<<<<<< HEAD
             <option value=''>Movimentos</option>
             <?php
             if (count($movimentos) > 0) {
               foreach ($movimentos as $movimento) {
                 $id   = $movimento['TIPR_ID'];
                 $name = $movimento['TIPR_NOME'];
+=======
+            <option value=''>Todos</option>
+            <?php
+            if (count($processos) > 0) {
+              foreach ($processos as $processo) {
+                $id   = $processo['TIPR_ID'];
+                $name = $processo['TIPR_NOME'];
+>>>>>>> dev
                 echo "<option value='$id'>$name</option>";
               }
             }
@@ -102,7 +111,7 @@ $relatorios = $view->consultarDadosRelatorio();
     <div class="container text-center">
       <div class="row">
         <div class="col">
-          <button class="btn btn-secondary d-print-none" onclick="window.location.href='http://localhost/src/pages/home/index.php'">Voltar</button>
+        <a class="btn btn-secondary ms-3 mt-2" href="http://localhost/src/pages/home/index.php">Voltar</a>
         </div>
         <div class="col">
           <script language="javascript">

@@ -57,9 +57,9 @@ class CadastroMateriaPrimaView
             echo '<td> <button type="button" id="editar" onclick="preencherCampos(event)" name="idMateriaPrimaEditar" value="' . $row["TIMP_ID"] . '" class="btn-editar btn btn-primary">Editar</button>';
 
             if ($row["TIMP_STATUS"] == "1")
-                echo '<td> <button type="submit" name="idMateriaPrimaAtivo" class="btn btn-status btn-success" value="' . $row["TIMP_ID"] . '">Ativado</button>';
+                echo '<td> <button type="submit" onclick="return confirm(\'Inativar?\')" name="idMateriaPrimaAtivo" class="btn btn-status btn-success" value="' . $row["TIMP_ID"] . '">Ativado</button>';
             else
-                echo '<td> <button type="submit" name="idMateriaPrimaInativo" class="btn btn-status btn-danger" value="' . $row["TIMP_ID"] . '">Inativo</button>';
+                echo '<td> <button type="submit" onclick="return confirm(\'Ativar?\')" name="idMateriaPrimaInativo" class="btn btn-status btn-danger" value="' . $row["TIMP_ID"] . '">Inativo</button>';
             echo "</tr>";
         }
     }

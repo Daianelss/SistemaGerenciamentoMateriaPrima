@@ -54,9 +54,9 @@ class CadastroProcessoView
             echo '<td> <button type="button" id="editar" onclick="preencherCampos(event)" name="idProcessoEditar" value="' . $row["TIPR_ID"] . '" class="btn-editar btn btn-primary">Editar</button>';
 
             if ($row["TIPR_STATUS"] == "1")
-                echo '<td> <button type="submit" name="idProcessoAtivo" class="btn btn-status btn-success" value="' . $row["TIPR_ID"] . '">Ativado</button>';
+                echo '<td> <button type="submit" onclick="return confirm(\'Inativar?\')" name="idProcessoAtivo" class="btn btn-status btn-success" value="' . $row["TIPR_ID"] . '">Ativado</button>';
             else
-                echo '<td> <button type="submit" name="idProcessoInativo" class="btn btn-status btn-danger" value="' . $row["TIPR_ID"] . '">Inativo</button>';
+                echo '<td> <button type="submit" onclick="return confirm(\'Ativar?\')" name="idProcessoInativo" class="btn btn-status btn-danger" value="' . $row["TIPR_ID"] . '">Inativo</button>';
             echo "</tr>";
         }
     }

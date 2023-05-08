@@ -4,7 +4,6 @@
 <head>
     <title>Página Inicial</title>
     <?php
-    require_once "../../config/db.php";
     include '../../view/bootstrap_head.php';
 
     ?>
@@ -44,6 +43,7 @@
             </div>
 
         </div>
+
     </div>
 
     <?php
