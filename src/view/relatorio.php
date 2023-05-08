@@ -46,21 +46,13 @@ $relatorios = $view->consultarDadosRelatorio();
           </select>
 
           <select class="form-row, border-secondary border-2 d-print-none" name="movimentos">
-<<<<<<< HEAD
-            <option value=''>Movimentos</option>
-            <?php
-            if (count($movimentos) > 0) {
-              foreach ($movimentos as $movimento) {
-                $id   = $movimento['TIPR_ID'];
-                $name = $movimento['TIPR_NOME'];
-=======
+
             <option value=''>Todos</option>
             <?php
             if (count($processos) > 0) {
               foreach ($processos as $processo) {
                 $id   = $processo['TIPR_ID'];
                 $name = $processo['TIPR_NOME'];
->>>>>>> dev
                 echo "<option value='$id'>$name</option>";
               }
             }
