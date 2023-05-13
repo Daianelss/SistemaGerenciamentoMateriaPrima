@@ -1,35 +1,58 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Página Inicial</title>
-<?php
-require_once "../../config/db.php";
-include '../../view/bootstrap_head.php';
+    <?php
+    include '../../view/bootstrap_head.php';
 
-?>
+    ?>
+    <style>
+        .bg-secondary {
+            background-color: rgb(118, 30, 72, 0.57) !important;
+        }
+        body{
+            background-color: rgb(217, 217, 217, 0.4) !important;
+        }
+
+        .btn {
+            color: black !important;
+            background-color: #EDD8FD !important;
+            border: 1px solid #000000 !important;
+            border-radius: 10px !important;
+            box-sizing: border-box !important;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+        }
+    </style>
 </head>
-<body>
-    <h1>Bem-vindo ao Sistema de Movimentos</h1>
-    <h2>Escolha uma opção abaixo:</h2>
-    <!-- Botões para as opções -->
-    <a href="../../view/banca.php" class="btn btn-info">Bancas</a>
-    <a href="../../view/cadastro-funcionario.php" class="btn btn-info">Funcionários</a>
-    <a href="materia_prima.html" class="btn btn-info">Matéria Prima</a>
-    <a href="peroxido.html" class="btn btn-info">Peroxido</a>
-    <a href="politriz.html" class="btn btn-info">Politriz</a>
-    <a href="conserto.html" class="btn btn-info">Conserto</a>
-    <a href="rodio_branco.html" class="btn btn-info">Ródio Branco</a>
-    <a href="rodio_negro.html" class="btn btn-info">Ródio Negro</a>
-    <a href="magneto.html" class="btn btn-info">Magneto</a>
-    <a href="peso_medio.html" class="btn btn-info">Peso Médio</a>
+<header class="bg-secondary p-3">
+    <h1 class="text-center mb-5 text-black">Bem-vindo ao Sistema de Movimentos</h1>
+</header>
 
-<!-- Botão para teste -->
-    <a href="../../teste/teste.html" class="btn btn-danger">Testes</a>
+<body>
+    <div class="container clearfix">
+        <div class="mx-auto mt-5 border border-dark pt-5 pb-5 container">
+            <h2 class="text-center" style="height: 190px;">Escolha uma opção abaixo:</h2>
+
+            <div class="col-md-12 d-flex align-items-center justify-content-center">
+                <button class="btn btn-secondary ms-3 mt-2" onclick="window.location.href='http://localhost/src/view/relatorio.php'" style="margin-right: 10px;">Relatório</button>
+                <button class="btn btn-secondary ms-3 mt-2" onclick="window.location.href='http://localhost/src/view/cadastro-movimento.php'" style="margin-right: 10px;">Movimentos</button>
+                <button class="btn btn-secondary ms-3 mt-2" onclick="window.location.href='http://localhost/src/view/cadastro-funcionario.php'" style="margin-right: 10px;">Funcionários</button>
+                <button class="btn btn-secondary ms-3 mt-2" onclick="window.location.href='http://localhost/src/view/cadastro-materia-prima.php'" style="margin-right: 10px;">Matéria Prima</button>
+                <button class="btn btn-secondary ms-3 mt-2" onclick="window.location.href='http://localhost/src/view/cadastro-processo.php'" style="margin-right: 10px;">Cadastro Processo</button>
+            </div>
+
+        </div>
+
+    </div>
 
     <?php
-include '../../view/bootstrap_foot.php';
+    include '../../view/bootstrap_foot.php';
+    ?>
 
-?>
-
+    <footer class="bg-secondary p-3 container-fluid fixed-bottom ">
+        <h6 class="text-black mt-5 text-center  ">Todos os Direitos Reservados © 2023</h6>
+    </footer>
 </body>
+
 </html>

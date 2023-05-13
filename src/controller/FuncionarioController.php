@@ -9,22 +9,14 @@ class FuncionarioController
         $this->funcionario = new FuncionarioModel();
     }
 
-    function dispararAcao($nomeFuncionario, $id = null)
-    {
+    public function cadastrarFuncionario($nomeFuncionario){
         $this->funcionario->nomeFuncionario = Utils::tratarInjection($nomeFuncionario);
-        $this->funcionario->idFuncionario = $id;
-
-        if ($id != '') {
-            echo "Editar Funcionarios <br>";
-            $this->funcionario->editarFuncionario($id);
-            header("Location: ../view/cadastro-funcionario.php");
-            exit();
-        }
-
-        echo "Cadastro Controller <br>";
         $this->funcionario->cadastrarfuncionario();
-        header("Location: ../view/cadastro-funcionario.php");
-        exit();
+    }
+
+    public function editarFuncionario($nomeFuncionario, $idFuncionario){
+        $this->funcionario->nomeFuncionario = Utils::tratarInjection($nomeFuncionario);
+        $this->funcionario->editarFuncionario($idFuncionario);
     }
 
     public function listarFuncionarios()
@@ -34,7 +26,7 @@ class FuncionarioController
         if (mysqli_num_rows($result) > 0) {
             return $result;
         } else {
-            return "Não foram encontrados registros na tabela.";
+            return null;
         }
     }
 

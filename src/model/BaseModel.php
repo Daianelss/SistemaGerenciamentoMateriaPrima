@@ -1,7 +1,7 @@
 <?php
-include "../controller/Utils.php";
-include "../config/Conexao.php";
-class BaseModel
+include_once "../controller/Utils.php";
+include_once "../config/Conexao.php";
+abstract class BaseModel
 {
     private $conexao;
     public $nomeTabela;
@@ -30,9 +30,33 @@ class BaseModel
         return $this->executarDql($sql);
     }
 
-    public function consultarTodos()
+    public function consultarTodos($filtro = "")
     {
-        $sql = "SELECT * FROM $this->nomeTabela";
+        $sql = "SELECT * FROM $this->nomeTabela 
+        WHERE 1 = 1";
+
+        if ($filtro != "")
+            $sql = $sql . " AND $filtro";
+
+        return $this->executarDql($sql);
+    }
+
+    /**
+     * @param $joins deve ser um array associativo com os seguintes campos:
+     * array(
+     * [
+     *      'campoTabela' => "CAMPO_ID",
+     *      'campoReferencia' => "CAMPO_REFERENCIA_ID",
+     *      'nomeTabela' => "TABELA"
+     * ])
+     */
+    public function consultarTodosInnerJoin($joins, $filtro = "")
+    {
+        $sql = "SELECT * FROM $this->nomeTabela \n" . $this->juntarInnerJoins($joins) . "\n WHERE 1 = 1";
+
+        if ($filtro != "")
+            $sql = $sql . " AND $filtro";
+
         return $this->executarDql($sql);
     }
 
@@ -41,6 +65,13 @@ class BaseModel
         $sql = "UPDATE $this->nomeTabela SET " . $this->juntarCamposEditar($campos, $valores) . " WHERE $this->campoId = $id;";
         return $this->executarDml($sql);
     }
+
+    public function deletar($id)
+    {
+        $sql = "DELETE FROM $this->nomeTabela  WHERE $this->campoId = $id;";
+        return $this->executarDml($sql);
+    }
+
 
     public function desativar($id)
     {
@@ -58,7 +89,7 @@ class BaseModel
     public function executarDml($query): bool
     {
         try {
-            var_dump($query);
+            $this->conexao = Conexao::conectar();
             $stmt = mysqli_prepare($this->conexao, $query);
             return mysqli_stmt_execute($stmt);
         } catch (PDOException $exce) {
@@ -72,6 +103,7 @@ class BaseModel
     public function executarDql($query)
     {
         try {
+            $this->conexao = Conexao::conectar();
             return mysqli_query($this->conexao, $query);
         } catch (PDOException $exce) {
             echo "Erro ao executar DQL!";
@@ -104,6 +136,16 @@ class BaseModel
                 $resultado = $resultado . $campos[$i] . " = '" . $valores[$i] . "',";
             else
                 $resultado = $resultado . $campos[$i] . " = '" . $valores[$i] . "'";
+        }
+
+        return $resultado;
+    }
+
+    private function juntarInnerJoins($joins)
+    {
+        $resultado = "";
+        for ($i = 0; $i < count($joins); $i++) {
+            $resultado = $resultado . " INNER JOIN " . $joins[$i]['nomeTabela'] . " ON " . $joins[$i]['campoTabela'] . " = " . $joins[$i]['campoReferencia'] . " \n";
         }
 
         return $resultado;

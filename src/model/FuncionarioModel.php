@@ -1,5 +1,5 @@
 <?php
-include "BaseModel.php";
+include_once "BaseModel.php";
 class FuncionarioModel extends BaseModel{
 
     public $nomeFuncionario;
@@ -25,7 +25,6 @@ class FuncionarioModel extends BaseModel{
         $valores = array($this->nomeFuncionario, "1");
         $this->inserir($campos, $valores);
     }
-
 
 }
 
