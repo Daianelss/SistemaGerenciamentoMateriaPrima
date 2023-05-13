@@ -54,7 +54,9 @@ $processos = $view->getProcessos();
             </div>
             <div class="d-flex flex-row mb-3">
                 <label>Operação</label><br>
+
                 <input class="ms-2 me-3" type="radio" id="entrada" name="tipoOperacaoMovimento" value="1" checked>
+
                 <label for="entrada">Entrada</label><br>
 
                 <input class="ms-2 me-3" type="radio" id="saida" name="tipoOperacaoMovimento" value="0">
@@ -151,4 +153,6 @@ $processos = $view->getProcessos();
     ?>
 </body>
 
+
 </html>
+
