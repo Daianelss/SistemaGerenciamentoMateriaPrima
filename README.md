@@ -1,4 +1,4 @@
-<h1>Gerenciamento de Matéria-Prima com PIGerenciamentoMateriaPrima< /h1 >
+<h1>Gerenciamento de Matéria-Prima com PIGerenciamentoMateriaPrima</h1>
 
 Este é um projeto desenvolvido por um grupo de sete pessoas, que tem como objetivo criar um pequeno sistema de gerenciamento de matéria-prima para uma empresa de pequeno porte.
 
